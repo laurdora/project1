@@ -28,7 +28,7 @@
         <div class="form-group input-group">
           <input type="text" class="form-control" placeholder="Search..">
           <span class="input-group-btn">
-            <button class="btn btn-default" type="button">
+            <button class="btn btn-default" type="submit">
               <span class="glyphicon glyphicon-search"></span>
             </button>
           </span>        
@@ -37,7 +37,7 @@
 
       <ul class="nav navbar-nav navbar-right">
         <li class="active"><a href="{{URL::to('/create_post')}}"><span class="glyphicon glyphicon-plus-sign"></span>Create post</a></li>
-        <li><a href="#"><span class="glyphicon glyphicon-user"></span> My Account</a></li>
+        <li><a href="{{URL::to('/my_account')}}"><span class="glyphicon glyphicon-user"></span> My Account</a></li>
         <li>
             <a href="{{URL::to('/logout')}}">
             <span>{{ucwords(Auth::user()->fname)}}</span>

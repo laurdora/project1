@@ -31,12 +31,20 @@ Route::get('/create_post', function () {
     return view('layouts/create_post');
 });
 
-Route::get('/postsuccess', function () {
-    return view('layouts/postsuccess');
+Route::get('/edit_post', function () {
+    return view('layouts/edit_post');
 });
 
-Route::get('/upload', function () {
-	return view('layouts/upload_article');
+Route::get('/my_account', function () {
+    return view('layouts/my_account');
+});
+
+Route::get('/edit_profile', function () {
+    return view('layouts/edit_profile');
+});
+
+Route::get('/change_password', function () {
+    return view('layouts/change_password');
 });
 
 

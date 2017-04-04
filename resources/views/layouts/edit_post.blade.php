@@ -2,7 +2,7 @@
 
 	<div style='margin-top:5%' class="container-fluid">
 		<div style='width:50%;margin:auto;' class="panel panel-default">
-		<h2 style='margin-left:5%' >Create Post</h2>
+		<h2 style='margin-left:5%' >Edit Post</h2>
 		<hr>
 
 		<form action="create_post" enctype="multipart/form-data" method="post">
@@ -61,7 +61,7 @@
 			<hr>
 			<p style='text-align: right'>
 			 	<a style='border-color:#ccc' href="{{URL::to('home')}}" class="btn btn-secondary">Cancle</a>
-        	  	<button style='margin-right:10%' type='submit' href="#" class="btn btn-primary">Submit</button>
+        	  	<button style='margin-right:10%' type='submit' href="#" class="btn btn-primary">Apply change</button>
         	</p>
 
 		</form>
