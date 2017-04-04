@@ -15,7 +15,7 @@
 						</div>
 					@endif
 						@if(Session::has('Auth_error'))
-						<div style='margin-left:7%;text-align:center' class="alert alert-success col-sm-10"> 
+						<div style='margin-left:7%;text-align:center' class="alert alert-danger col-sm-10"> 
 							{{Session::get('Auth_error')}} 
 						</div>
 					@endif

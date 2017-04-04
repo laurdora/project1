@@ -27,13 +27,22 @@ Route::get('/home', function () {
     return view('layouts/home');
 });
 
+Route::get('/create_post', function () {
+    return view('layouts/create_post');
+});
+
+Route::get('/postsuccess', function () {
+    return view('layouts/postsuccess');
+});
+
+Route::get('/upload', function () {
+	return view('layouts/upload_article');
+});
+
+
 //Auth::routes();
 
 Route::post('/register_action','RegisterController@store');
-Route::post('/login_check','RegisterController@postlogin');
-
-Route::get('/logout',function(){
-	Auth::logout();
-	return Redirect::to('');
-})->middleware("auth");
-//Route::get('/home', 'HomeController@index');
+Route::post('/login_check','LoginController@postlogin');
+Route::post('/create_post','PostController@store');
+Route::get('/logout','LoginController@user_logout')->middleware("auth");
