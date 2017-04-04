@@ -26,6 +26,12 @@ Route::get('/login', function () {
 Route::get('/home', function () {
     return view('layouts/home');
 });
+Route::get('/upload', function () {
+	return view('layouts/upload_article');
+});
+Route::get('/edit', function () {
+	return view('layouts/edit_article');
+});
 
 //Auth::routes();
 
