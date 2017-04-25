@@ -7,6 +7,7 @@ use Input;
 use Validator;
 use Redirect;
 use App\Registered_user;
+use App\user_preference;
 use Auth;
 use Hash;
 
@@ -15,7 +16,9 @@ class RegisterController extends Controller
 {
     // Function for register validation
     public function store(request $request){
+        
     	$this->validate($request , [
+            
             'fname' =>'required',
             'username' =>'required',
             'password' =>'required|min:6|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/',
@@ -30,6 +33,7 @@ class RegisterController extends Controller
             'password.min'=> 'the confirm password must be at least 6 characters',
             'cpassword.same' => 'the password and confirm password must be the same',
             'password.regex' => 'Your password must contain one uppercase and one lowercase letters and one number'
+            
             ]);
 
             $users = new Registered_user();
@@ -44,10 +48,18 @@ class RegisterController extends Controller
             $users->country=$request['country'];
             $users->zip=$request['zip'];
             $users->phonenum=$request['phonenum'];
-
+            
             $users->save();
 
-    		return Redirect::to('login')->with('success','Congratulations! Your account has successfully registered!');
+            $preference = new user_preference();
+            $preference->username=$request['username'];
+            $temp = implode(",",$request['preference'] );
+
+            $preference->preference=$temp;
+            $preference->save();
+
+
+        	return Redirect::to('login')->with('success','Congratulations! Your account has successfully registered!');
     	}
     
 

@@ -47,10 +47,28 @@ Route::get('/change_password', function () {
     return view('layouts/change_password');
 });
 
+Route::get('/description', function () {
+    return view('layouts/description');
+});
 
+Route::get('/index', 'PostController@index');
 //Auth::routes();
 
+//RegisterController route
 Route::post('/register_action','RegisterController@store');
+
+//LoginController route
 Route::post('/login_check','LoginController@postlogin');
-Route::post('/create_post','PostController@store');
 Route::get('/logout','LoginController@user_logout')->middleware("auth");
+
+//Postcontroller route
+Route::post('/search','PostController@search');
+Route::post('/create_sellerpost','PostController@storesellerpost');
+Route::post('/create_buyerpost','PostController@storebuyerpost');
+Route::get('/filtercontent_meat','PostController@display_meat');
+Route::get('/filtercontent_milk','PostController@display_milk');
+Route::get('/filtercontent_fruit','PostController@display_fruit');
+Route::get('/filtercontent_vegetable','PostController@display_vegetable');
+Route::get('/filtercontent_cheese','PostController@display_cheese');
+Route::get('/filtercontent_wine','PostController@display_wine');
+Route::get('/filtercontent_grain','PostController@display_grain');

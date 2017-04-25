@@ -4,8 +4,8 @@
 		<div style='width:50%;margin:auto;' class="panel panel-default">
 		<h2 style='margin-left:5%' >Create Post</h2>
 		<hr>
-
-		<form action="create_post" enctype="multipart/form-data" method="post">
+		@if(Auth::user()->usertype=="Seller")
+		<form action="create_sellerpost" enctype="multipart/form-data" method="post">
 			{{csrf_field()}}
 
 			<div class='row content'>
@@ -15,13 +15,13 @@
 					  <label for="itemcategory">Item category:</label>
 					  <select class="form-control" name="itemcategory" id="itemcategory">
 					    <option value=" " >Please select</option>
-					    <option>camera</option>
-					    <option>Fashion</option>
-                        <option>Electronics</option>
-                        <option>Sports</option>
-                        <option>Health</option>
-                        <option>Toy</option>
-                        <option>Others</option>
+					    <option>meat</option>
+					    <option>milk</option>
+                        <option>fruit</option>
+                        <option>vegetable</option>
+                        <option>cheese</option>
+                        <option>wine</option>
+                        <option>grain</option>
 					  </select>
 					   @if($errors->has('itemcategory'))<div style='margin-top:5px' class="alert alert-danger"> <p>{{$errors->first('itemcategory')}}</p> </div>@endif
 					</div>
@@ -65,6 +65,53 @@
         	</p>
 
 		</form>
+
+		@else
+
+		<form action="create_buyerpost" enctype="multipart/form-data" method="post">
+			{{csrf_field()}}
+
+			<div class='row content'>
+				<div style='margin-left:5%' class ='col-sm-10'>
+
+				  	<div class="form-group">
+					  <label for="itemcategory">Item category:</label>
+					  <select class="form-control" name="itemcategory" id="itemcategory">
+					    <option value=" " >Please select</option>
+					    <option>meat</option>
+					    <option>milk</option>
+                        <option>fruit</option>
+                        <option>vegetable</option>
+                        <option>cheese</option>
+                        <option>wine</option>
+                        <option>grain</option>
+					  </select>
+					   @if($errors->has('itemcategory'))<div style='margin-top:5px' class="alert alert-danger"> <p>{{$errors->first('itemcategory')}}</p> </div>@endif
+					</div>
+
+					<div class="form-group">
+					    <label for="Ptitle">Title:</label>
+					    <input type="Ptitle" class="form-control" name="Ptitle" id="Ptitle" placeholder="Post Title">
+						@if($errors->has('Ptitle'))<div style='margin-top:5px' class="alert alert-danger"> <p>{{$errors->first('Ptitle')}}</p> </div>@endif
+					</div>	
+
+					<div class="form-group">
+					    <label for="description">Description:</label>
+					   <textarea class="form-control" name="description" cols="50" rows="10" placeholder="Please describe your item here..."></textarea>
+						@if($errors->has('description'))<div style='margin-top:5px' class="alert alert-danger"> <p>{{$errors->first('description')}}</p> </div>@endif
+					</div>
+
+				</div>
+
+			</div>
+			<hr>
+			<p style='text-align: right'>
+			 	<a style='border-color:#ccc' href="{{URL::to('home')}}" class="btn btn-secondary">Cancle</a>
+        	  	<button style='margin-right:10%' type='submit' href="#" class="btn btn-primary">Submit</button>
+        	</p>
+
+		</form>
+		@endif
 		</div>
 		</div>
 		</div>

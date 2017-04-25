@@ -18,4 +18,5 @@ class Registered_user extends Authenticatable
     {
     	return $this->hasMany('App\Post');
     }
+
 }

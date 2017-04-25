@@ -13,8 +13,8 @@
 
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
-    <div></div> <div class="navbar-header">
-      <a style='font-size:xx-large' href="#" class="navbar-brand">Project1</a>
+     <div class="navbar-header">
+      <a style='font-size:xx-large' href="#" class="navbar-brand" >Project1</a>
   </div>
   <!--<ul class="nav navbar-nav">
       <li class="active"><a href="#">Home</a></li>
@@ -24,7 +24,8 @@
     </ul> -->
     @if(Auth::check())
 
-     <form class="navbar-form navbar-left" role="search">
+     <form class="navbar-form navbar-left" action="search" method="post">
+        <input type="hidden" name="_token" value="{{csrf_token()}}">
         <div class="form-group input-group">
           <input type="text" class="form-control" placeholder="Search..">
           <span class="input-group-btn">
