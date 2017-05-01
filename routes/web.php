@@ -1,5 +1,6 @@
 <?php
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -51,11 +52,12 @@ Route::get('/description', function () {
     return view('layouts/description');
 });
 
-Route::get('/index', 'PostController@index');
+Route::get('/index','PostController@index');
 //Auth::routes();
 
 //RegisterController route
 Route::post('/register_action','RegisterController@store');
+Route::get('/userdetail', 'RegisterController@show_userprofile');
 
 //LoginController route
 Route::post('/login_check','LoginController@postlogin');
@@ -72,3 +74,7 @@ Route::get('/filtercontent_vegetable','PostController@display_vegetable');
 Route::get('/filtercontent_cheese','PostController@display_cheese');
 Route::get('/filtercontent_wine','PostController@display_wine');
 Route::get('/filtercontent_grain','PostController@display_grain');
+Route::get('/view_description', 'PostController@show_description');
+
+
+

@@ -18,8 +18,8 @@
 				  		@if($errors->has('fname'))<div  style='margin-top:5px'class="alert alert-danger"> <p>{{$errors->first('fname')}}</p> </div>@endif
 				  	</div>
 					<div class="form-group">
-					    <label for="id">User ID:</label>
-					    <input type="id" class="form-control" name="user_id" id="user_id" placeholder="user id">
+					    <label for="id">User ID:{{(Auth::user()->fname)}}</label>
+					    <input type="id" class="form-control" name="user_id" id="user_id" placeholder="user id" value="">
 						@if($errors->has('userId'))<div style='margin-top:5px' class="alert alert-danger"> <p>{{$errors->first('userId')}}</p> </div>@endif
 					</div>	
 

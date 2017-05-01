@@ -8,6 +8,7 @@ use Validator;
 use Redirect;
 use App\Registered_user;
 use App\user_preference;
+use App\Post;
 use Auth;
 use Hash;
 
@@ -30,10 +31,12 @@ class RegisterController extends Controller
             'country' =>'required',
             'zip' =>'required|numeric',
             'phonenum' =>'required|numeric',
-            'password.min'=> 'the confirm password must be at least 6 characters',
-            'cpassword.same' => 'the password and confirm password must be the same',
+            ],
+
+            [
+            'password.min'=> 'The confirm password must be at least 6 characters',
+            'cpassword.same' => 'The password and confirm password must be the same',
             'password.regex' => 'Your password must contain one uppercase and one lowercase letters and one number'
-            
             ]);
 
             $users = new Registered_user();
@@ -61,6 +64,16 @@ class RegisterController extends Controller
 
         	return Redirect::to('login')->with('success','Congratulations! Your account has successfully registered!');
     	}
+
+    public function show_userprofile(request $request)
+    {
+        $user = Registered_user::where('username', $request->username)->get();
+        $posts = Post::where('username', $request->username)->latest()->paginate(5);
+        $thisuser = $user[0];
+        //return $posts;
+        return view("layouts/userdetail", ['user'=>$thisuser], ['posts'=>$posts]);
+
+    }
     
 
 }
