@@ -74,6 +74,12 @@ class RegisterController extends Controller
         return view("layouts/userdetail", ['user'=>$thisuser], ['posts'=>$posts]);
 
     }
+
+    public function delete_user($username)
+    {
+        return $username; 
+        //return Redirect::to('login')->with('deleted', 'Congratulations! Your account has successfully registered!');
+    }
     
 
 }

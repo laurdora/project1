@@ -27,10 +27,12 @@ class PostController extends Controller
         'price' =>'required|numeric',
         'Ptitle' =>'required|max:50',
         'description' =>'required',
-        'image' => 'required|image|mimes:jpeg,jpg,png',
+        'image' => 'required|image|mimes:jpeg,jpg,png'
+        ]
+        ,[
         'price.numeric' => 'Please offer a price in numeric form',
         'Ptitle.max'=> 'Your title is too long, please write your title within 50 characters',
-    ]);
+        ]);
 
       //Store image in path://storage/app/public
       $image = $request->file('image');

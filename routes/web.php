@@ -58,6 +58,7 @@ Route::get('/index','PostController@index');
 //RegisterController route
 Route::post('/register_action','RegisterController@store');
 Route::get('/userdetail', 'RegisterController@show_userprofile');
+Route::delete('/delete_user',['as'=> 'user.destroy','uses' => 'RegisterController@delete_user']);
 
 //LoginController route
 Route::post('/login_check','LoginController@postlogin');
