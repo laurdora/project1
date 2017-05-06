@@ -15,7 +15,9 @@ class CreatePreferenceTable extends Migration
     {
         Schema::create('preference', function (Blueprint $table) {
             $table->string('username')->unique();
-            $table->string('preference');
+            $table->string('preference_1')->nullable();
+            $table->string('preference_2')->nullable();
+            $table->string('preference_3')->nullable();
             $table->timestamps();
 
             //

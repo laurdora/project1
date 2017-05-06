@@ -1,5 +1,6 @@
 @include('layouts.nav')
 
+<script src='https://www.google.com/recaptcha/api.js'></script>
 <div class="container-fluid">
     <div class="row">
 
@@ -18,9 +19,53 @@
                     </div>
                     <div class="col-md-4" style="margin-left:10%">
                       <p>user name:{{$description->username}}</p>
-                      <p>contact number:{{$description->phonenum}}</p>
-                      <p>email:{{$description->email}}</p>
-                      <a style='border-color:#ccc' href="" class="btn btn-secondary">Contact Seller</a>
+                      <p>contact number:
+                        @if (Session::has('verified'))
+                          {{$description->phonenum}}
+                        @else
+                          ******
+                        @endif
+                      </p>
+
+                      <p>email:
+                        @if (Session::has('verified'))
+                          {{$description->email}}
+                        @else
+                          ******
+                        @endif
+                      </p>
+
+                     {{-- Trigger the modal with a button --}}
+                       @if (Session::has('verified'))
+                      <button style="display:none"; class="btn btn-default btn-md" data-toggle="modal" data-target="#myModal"></button>
+                      @else
+                      <button type="button" class="btn btn-default btn-md" data-toggle="modal" data-target="#myModal">Contact {{$description->usertype}}</button>
+                      @endif
+
+                        {{-- Modal --}}
+                        <div id="myModal" class="modal fade" role="dialog">
+                          <div class="modal-dialog">
+
+                            {{-- Modal content --}}
+                            <div class="modal-content">
+                             <div class="modal-header">
+                               <button type="button" class="close" data-dismiss="modal">&times;</button>
+                               <h4 class="modal-title">Security protection</h4>
+                             </div>
+                             <div class="modal-body">
+                               <p>Please verify you are a human</p>
+                               <form action="human_verfication" method="post">
+                               {{ csrf_field()}}
+                               <div class="g-recaptcha" data-sitekey="6LfHph8UAAAAAAD-X8Nw9vWeW8CFG2fdj8xe-5Eg"></div>
+                             </div>
+                             <div class="modal-footer">
+                               <button class="btn btn-default" type="submit">Submit</button>
+                               </div>
+                             </form>
+                            </div>
+                          </div>
+                        </div>
+
                     </div>
                   </div>
                   <div class="row">
@@ -52,11 +97,52 @@
                     </div>
                     <div class="col-md-4" style="margin-left:10%">
                       <p>user name:{{$description->username}}</p>
-                      <p>contact number:{{$description->phonenum}}</p>
-                      <p>email:{{$description->email}}</p>
-                      <a style='border-color:#ccc' href="" class="btn btn-secondary">Contact Seller</a>
-                    </div>
-                    <div class="col-md-3" style="margin-left:20px">
+                      <p>contact number:
+                        @if (Session::has('verified'))
+                          {{$description->phonenum}}
+                        @else
+                          ******
+                        @endif
+                      </p>
+
+                      <p>email:
+                        @if (Session::has('verified'))
+                          {{$description->email}}
+                        @else
+                          ******
+                        @endif
+                      </p>
+
+                     {{-- Trigger the modal with a button --}}
+                       @if (Session::has('verified'))
+                      <button style="display:none"; class="btn btn-default btn-md" data-toggle="modal" data-target="#myModal"></button>
+                      @else
+                      <button type="button" class="btn btn-default btn-md" data-toggle="modal" data-target="#myModal">Contact {{$description->usertype}}</button>
+                      @endif
+
+                        {{-- Modal --}}
+                        <div id="myModal" class="modal fade" role="dialog">
+                          <div class="modal-dialog">
+
+                            {{-- Modal content --}}
+                            <div class="modal-content">
+                             <div class="modal-header">
+                               <button type="button" class="close" data-dismiss="modal">&times;</button>
+                               <h4 class="modal-title">Security protection</h4>
+                             </div>
+                             <div class="modal-body">
+                               <p>Please verify you are a human</p>
+                               <form action="human_verfication" method="post">
+                               {{ csrf_field()}}
+                               <div class="g-recaptcha" data-sitekey="6LfHph8UAAAAAAD-X8Nw9vWeW8CFG2fdj8xe-5Eg"></div>
+                             </div>
+                             <div class="modal-footer">
+                               <button class="btn btn-default" type="submit">Submit</button>
+                               </div>
+                             </form>
+                            </div>
+                          </div>
+                        </div>
                       
                     </div>
                   </div>

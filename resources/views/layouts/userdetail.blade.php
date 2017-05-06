@@ -24,6 +24,11 @@
                         </div>
                   </div>
                   <hr>
+                    @if (Session::has('post_deleted'))
+                    <div style='margin-left:7%;text-align:center' class="alert alert-success col-sm-10"> 
+                         {{Session::get('post_deleted')}} 
+                    </div>
+                    @endif
                      @foreach ($posts as $post)
                     <div class="row" style="border-bottom:1px solid #ddd">
                        <div class="col-md-4" style="margin-bottom:10px">
@@ -36,10 +41,27 @@
                        <div class="col-md-8" style="margin-bottom:10px">
                        <h4 ><b>{{$post->title}}</b></h4>
                        <p style="height: 100px; overflow:hidden;text-overflow:ellipsis">{{$post->description}}</p>
-                       <form action="view_description" method="get" value="{{$post->Post_id}}">
+                       <div class="floating-box" style="display:inline-block;">
+                       <form action="view_description" method="get">
                        <input type="hidden" name="_token" value="{{csrf_token()}}">
                        <button style='border-color:#ccc;background-color:#ffffff' href="#" name="Post_id" value="{{$post->Post_id}}" class="btn btn-secondary">view detail</button>
-                       </form>  
+                       </form>
+                       </div>
+                       @if ($post->username == Auth::user()->username)
+                       <div class="floating-box" style="display:inline-block;">
+                       <form action="edit_post" method="post">
+                       <input type="hidden" name="_token" value="{{csrf_token()}}">
+                       <button style='border-color:#ccc;background-color:#ffffff' href="#" name="Post_id" value="{{$post->Post_id}}" class="btn btn-secondary">Edit</button>                       
+                       </form>
+                       </div>
+                       <div class="floating-box" style="display:inline-block;">
+                       <form action="delete_post" method="POST">
+                       <input type="hidden" name="_token" value="{{csrf_token()}}">
+                       <input type="hidden" name="_method" value="DELETE">
+                       <button href="#" name="Post_id" value="{{$post->Post_id}}" class="btn btn-danger">Delete</button>                       
+                       </form>
+                       </div>
+                       @endif
                        </div>
                     </div>
                     @endforeach

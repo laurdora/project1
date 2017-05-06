@@ -5,9 +5,6 @@
 		<h2 style='margin-left:5%' >Account details</h2>
 		<hr>
 
-		<form action="my_account_action" method="post">
-
-			<input type="hidden" name="_token" value="{{csrf_token()}}">
 
 			<div class='row content'>
 				<div style='margin-left:5%' class ='col-sm-5'>
@@ -18,7 +15,7 @@
 				  		@if($errors->has('fname'))<div  style='margin-top:5px'class="alert alert-danger"> <p>{{$errors->first('fname')}}</p> </div>@endif
 				  	</div>
 					<div class="form-group">
-					    <label for="id">User ID:{{(Auth::user()->fname)}}</label>
+					    <label for="id">User ID:</label>
 					    <input type="id" class="form-control" name="user_id" id="user_id" placeholder="user id" value="">
 						@if($errors->has('userId'))<div style='margin-top:5px' class="alert alert-danger"> <p>{{$errors->first('userId')}}</p> </div>@endif
 					</div>	
@@ -81,14 +78,29 @@
 
 			</div>
 			<hr>
-			<p style='text-align: right'>
-			 	<a style='border-color:#ccc' href="{{URL::to('#')}}" class="btn btn-secondary">View description history</a>
-				 <a style='border-color:#ccc' href="{{URL::to('/edit_profile')}}" class="btn btn-secondary">Edit Profile</a>
-				 <a style='border-color:#ccc; margin-right:15px' href="{{URL::to('/change_password')}}" class="btn btn-secondary">Change Password</a>
-        	  	
+			<p style='text-align: right;'>
+			<div class="floating-box" style="display:inline-block;">
+				<a style='border-color:#ccc; margin-right:15px' href="{{URL::to('/edit_profile')}}" class="btn btn-secondary">Edit Profile</a>
+			</div>
+			<div class="floating-box" style="display:inline-block;">
+				<a style='border-color:#ccc; margin-right:15px' href="{{URL::to('/change_password')}}" class="btn btn-secondary">Change Password</a>
+			</div>
+			<div class="floating-box" style="display:inline-block;">
+        	 	<form action="userdetail" method="get">
+                <input type="hidden" name="_token" value="{{csrf_token()}}">
+                <button style='border-color:#ccc;background-color:#ffffff' href="#" name="username" value="{{Auth::user()->username}}" class="btn btn-secondary"> View description history</button> 
+                </form>
+            </div>
+            <div class="floating-box" style="display:inline-block;">
+            	<form action="delete_user" method="POST">
+				<input type="hidden" name="_token" value="{{csrf_token()}}">
+				<input type="hidden" name="_method" value="DELETE">
+				<button style='margin-left:20px; margin-right:10%' href="#" class="btn btn-primary">Delete account</button>
+				</form>
+			</div>
         	</p>
 
-		</form>
+
 		</div>
 		</div>
 		</div>

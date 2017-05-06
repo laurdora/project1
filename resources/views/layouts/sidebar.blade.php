@@ -1,4 +1,4 @@
-        <div class="col-md-2">
+        <div class="col-md-1">
           <ul class="nav nav-pills nav-stacked">
             <li class="active"><a href="{{URL::to('/index')}}">Home</a></li>
             <li><a href="{{URL::to('/filtercontent_meat')}}">Meat</a></li>

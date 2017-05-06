@@ -19,6 +19,11 @@
 							{{Session::get('Auth_error')}} 
 						</div>
 					@endif
+					@if(Session::has('deleted'))
+						<div style='margin-left:7%;text-align:center' class="alert alert-success col-sm-10"> 
+							{{Session::get('deleted')}} 
+						</div>
+					@endif
 			<form action="login_check" method="post">
 				<input type="hidden" name="_token" value="{{csrf_token()}}">
 					<div style='margin:10%' >

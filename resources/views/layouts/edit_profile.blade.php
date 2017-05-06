@@ -73,10 +73,7 @@
 			<p style='text-align: right'>
 			 	<a style='border-color:#ccc' href="{{URL::to('/my_account')}}" class="btn btn-secondary">Cancel</a>
         	  <button style='margin-left:20px; margin-right:10%' href="#" class="btn btn-primary">Apply change</button>
-        	  	
-        	</p>
-
-		</form>
+			</form>
 		</div>
 		</div>
 		</div>

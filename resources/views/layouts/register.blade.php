@@ -95,70 +95,55 @@
 			</div>
 			<hr>
 			<div class="form-group">
-			<label style='margin-left:5%' for="preference"> Item Preference:</label>
+			<h3 style='margin-left:5%'> Item preference (Optional)</h3>
+			<label style='margin-left:5%'> Selecting your content preference will change the content display based on your preference </label>
 			</div>
 
 			<div class='row content'>
-
 				<div style='margin-left:5%' class ='col-sm-5'>
-				
 					<div class="form-group">
-				    <label>
-    				<input type="checkbox" name="preference[]" value="meat">
-  			  		Meat
-  					</label>
+						<label for="usertype">First Preference:</label>
+						<select class="form-control" name="preference_1">
+							<option value="" >Select option</option>
+							<option>meat</option>
+							<option>milk</option>
+							<option>fruit</option>
+							<option>vegetable</option>
+							<option>cheese</option>
+							<option>wine</option>
+							<option>grain</option>
+						</select>
 					</div>
-
+		
 					<div class="form-group">
-				    <label>
-    				<input type="checkbox" name="preference[]" value="milk">
-  			  		Milk
-  					</label>
-  					</div>
-
-  					<div class="form-group">
-				    <label>
-    				<input type="checkbox" name="preference[]" value="fruit">
-  			  		Fruit
-  					</label>
-  					</div>
-
-  					<div class="form-group">
-				    <label>
-    				<input type="checkbox" name="preference[]" value="vegetable">
-  			  		Vegetable
-  					</label>		
-  					</div>
-
-				</div>
-				
-				<div style='margin-left:5%' class ='col-sm-5'>
-
+						<label for="usertype">Second Preference:</label>
+						<select class="form-control" name="preference_2">
+							<option value="" >Select option</option>
+							<option>meat</option>
+							<option>milk</option>
+							<option>fruit</option>
+							<option>vegetable</option>
+							<option>cheese</option>
+							<option>wine</option>
+							<option>grain</option>
+						</select>
+					</div>
+		
 					<div class="form-group">
-					<label>
-    				<input type="checkbox" name="preference[]" value="cheese">
-  			  		Cheese
-  					</label>
-  					</div>
-
-  					<div class="form-group">
-				    <label>
-    				<input type="checkbox" name="preference[]" value="wine">
-  			  		Wine
-  					</label>
-  					</div>
-
-  					<div class="form-group">
-				    <label>
-    				<input type="checkbox" name="preference[]" value="grain">
-  			  		Grain
-  					</label>
-  					</div>
-
+						<label for="usertype">Third Preference:</label>
+						<select class="form-control" name="preference_3">
+							<option value="" >Select option</option>
+							<option>meat</option>
+							<option>milk</option>
+							<option>fruit</option>
+							<option>vegetable</option>
+							<option>cheese</option>
+							<option>wine</option>
+							<option>grain</option>
+						</select>
+					</div>
 				</div>
-
 			</div>
-			
 
 			<p style='text-align: right'>
 			 	<a style='border-color:#ccc' href="{{URL::to('/')}}" class="btn btn-secondary">Cancle</a>

@@ -56,9 +56,10 @@ class RegisterController extends Controller
 
             $preference = new user_preference();
             $preference->username=$request['username'];
-            $temp = implode(",",$request['preference'] );
+            $preference->preference_1=$request['preference_1'];
+            $preference->preference_2=$request['preference_2'];
+            $preference->preference_3=$request['preference_3'];
 
-            $preference->preference=$temp;
             $preference->save();
 
 
@@ -75,9 +76,14 @@ class RegisterController extends Controller
 
     }
 
-    public function delete_user($username)
+    public function destroy()
     {
-        return $username; 
+    $user = Auth::user();
+    Auth::logout();
+    $user->delete();
+    Post::where('username', $user->username)->delete();
+    user_preference::where('username', $user->username)->delete();
+    return Redirect::to('login')->with('deleted', 'your account has successfully deleted!');
         //return Redirect::to('login')->with('deleted', 'Congratulations! Your account has successfully registered!');
     }
     

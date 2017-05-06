@@ -14,7 +14,7 @@
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
      <div class="navbar-header">
-      <a style='font-size:xx-large' href="#" class="navbar-brand" >Project1</a>
+      <a style='font-size:xx-large' href="{{URL::to('index')}}" class="navbar-brand" >Project1</a>
   </div>
   <!--<ul class="nav navbar-nav">
       <li class="active"><a href="#">Home</a></li>
