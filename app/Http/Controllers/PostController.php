@@ -174,7 +174,7 @@ class PostController extends Controller
         $client = new Client();
         $response = $client->post('https://www.google.com/recaptcha/api/siteverify', [
           'form_params' => array(
-            'secret' => '6LfHph8UAAAAAHeINNv4jK-2xv9vQlyF7tukHqpj',
+            'secret' => '6Lc2RCAUAAAAAP73clpEH6artwHRESrvZbz209SX',
             'response' => $token
             )
           ]);

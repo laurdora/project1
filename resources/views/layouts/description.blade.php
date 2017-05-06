@@ -56,7 +56,7 @@
                                <p>Please verify you are a human</p>
                                <form action="human_verfication" method="post">
                                {{ csrf_field()}}
-                               <div class="g-recaptcha" data-sitekey="6LfHph8UAAAAAAD-X8Nw9vWeW8CFG2fdj8xe-5Eg"></div>
+                               <div class="g-recaptcha" data-sitekey="6Lc2RCAUAAAAAAr3sx1t_cSUeyMufoebNU6CvbZc"></div>
                              </div>
                              <div class="modal-footer">
                                <button class="btn btn-default" type="submit">Submit</button>
