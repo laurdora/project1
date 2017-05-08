@@ -52,13 +52,7 @@ Route::get('/description', function () {
 });
 
 Route::get('/index', 'PostController@index');
-Route::get('/index', ['uses' => 'PostController@search', 'as' => 'search']);
 //Auth::routes();
-
-
-//SearchController route
-
-
 
 //RegisterController route
 Route::post('/register_action','RegisterController@store');

@@ -94,6 +94,72 @@
 
 			</div>
 			<hr>
+			<div class="form-group">
+			<label style='margin-left:5%' for="preference"> Item Preference:</label>
+			</div>
+
+			<div class='row content'>
+
+				<div style='margin-left:5%' class ='col-sm-5'>
+				
+					<div class="form-group">
+				    <label>
+    				<input type="checkbox" name="preference[]" value="meat">
+  			  		Meat
+  					</label>
+					</div>
+
+					<div class="form-group">
+				    <label>
+    				<input type="checkbox" name="preference[]" value="milk">
+  			  		Milk
+  					</label>
+  					</div>
+
+  					<div class="form-group">
+				    <label>
+    				<input type="checkbox" name="preference[]" value="fruit">
+  			  		Fruit
+  					</label>
+  					</div>
+
+  					<div class="form-group">
+				    <label>
+    				<input type="checkbox" name="preference[]" value="vegetable">
+  			  		Vegetable
+  					</label>		
+  					</div>
+
+				</div>
+				
+				<div style='margin-left:5%' class ='col-sm-5'>
+
+					<div class="form-group">
+					<label>
+    				<input type="checkbox" name="preference[]" value="cheese">
+  			  		Cheese
+  					</label>
+  					</div>
+
+  					<div class="form-group">
+				    <label>
+    				<input type="checkbox" name="preference[]" value="wine">
+  			  		Wine
+  					</label>
+  					</div>
+
+  					<div class="form-group">
+				    <label>
+    				<input type="checkbox" name="preference[]" value="grain">
+  			  		Grain
+  					</label>
+  					</div>
+
+				</div>
+
+			</div>
+			
+
 			<p style='text-align: right'>
 			 	<a style='border-color:#ccc' href="{{URL::to('/')}}" class="btn btn-secondary">Cancle</a>
         	  	<button style='margin-right:10%' type='submit' href="#" class="btn btn-primary">Submit</button>
