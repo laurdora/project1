@@ -9,12 +9,7 @@
 							{{Session::get('success')}} 
 						</div>
 					@endif
-					@if(Session::has('login_success'))
-						<div style='margin-left:7%;text-align:center' class="alert alert-success col-sm-10"> 
-							{{Session::get('login_success')}} 
-						</div>
-					@endif
-						@if(Session::has('Auth_error'))
+					@if(Session::has('Auth_error'))
 						<div style='margin-left:7%;text-align:center' class="alert alert-danger col-sm-10"> 
 							{{Session::get('Auth_error')}} 
 						</div>
@@ -22,6 +17,11 @@
 					@if(Session::has('deleted'))
 						<div style='margin-left:7%;text-align:center' class="alert alert-success col-sm-10"> 
 							{{Session::get('deleted')}} 
+						</div>
+					@endif
+					@if(Session::has('logout'))
+						<div style='margin-left:7%;text-align:center' class="alert alert-success col-sm-10"> 
+							{{Session::get('logout')}} 
 						</div>
 					@endif
 			<form action="login_check" method="post">

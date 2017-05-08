@@ -81,5 +81,19 @@ Route::post('/human_verfication', 'PostController@human_verification');
 Route::post('/edit_post', 'PostController@edit');
 Route::delete('/delete_post', 'PostController@destroy');
 
+//admin route
 
 
+Route::get('/admin/login', function () {
+    return view('auth/adminlogin');
+});
+
+Route::post('/admin/admin_login', 'Auth\AdminLoginController@postlogin');
+Route::get('/admin_logout', 'Auth\AdminLoginController@logout');
+
+Route::get('/admin/home', 'AdminController@index');
+Route::get('/admin/home/table_users', 'AdminController@getUsers');
+Route::get('/admin/home/table_posts', 'AdminController@getPosts');
+
+Route::delete('admin/home/admin_deletepost', 'AdminController@destroy_post');
+Route::delete('admin/home/admin_deleteuser', 'AdminController@destroy_user');

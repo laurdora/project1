@@ -94,6 +94,10 @@ class PostController extends Controller
       if ($interests == '[]'){
         return view("layouts/home", ['sellerposts'=>$sellerposts, 'buyerposts'=>$buyerposts]);
       }
+      elseif($interests[0]->preference_1 == NUll){
+      $interest_posts=DB::table('posts')->where('usertype', 'Seller')->inRandomOrder()->paginate(5,['*'], 'page_a');
+      return view("layouts/home", ['interest_posts'=>$interest_posts, 'sellerposts'=>$sellerposts, 'buyerposts'=>$buyerposts]);
+      }
       else{
       $interest=$interests[0];
       $interest_posts=DB::table('posts')->where('usertype', 'Seller')->wherein('item_category',[$interest->preference_1, $interest->preference_2, $interest-> preference_3])->orderByRaw("FIELD(item_category, '$interest->preference_1', '$interest->preference_2', '$interest->preference_3')")->latest()->paginate(5,['*'], 'page_a');
@@ -174,7 +178,7 @@ class PostController extends Controller
         $client = new Client();
         $response = $client->post('https://www.google.com/recaptcha/api/siteverify', [
           'form_params' => array(
-            'secret' => '6Lc2RCAUAAAAAP73clpEH6artwHRESrvZbz209SX',
+            'secret' => '6LfHph8UAAAAAHeINNv4jK-2xv9vQlyF7tukHqpj',
             'response' => $token
             )
           ]);
