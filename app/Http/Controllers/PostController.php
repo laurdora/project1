@@ -15,6 +15,7 @@ use App\Post;
 use App\Registered_user;
 use App\user_preference;
 use GuzzleHttp\Client;
+use TeamTNT\TNTSearch\Facades\TNTSearch;
 
 
 class PostController extends Controller
@@ -100,7 +101,7 @@ class PostController extends Controller
       }
       else{
       $interest=$interests[0];
-      $interest_posts=DB::table('posts')->where('usertype', 'Seller')->wherein('item_category',[$interest->preference_1, $interest->preference_2, $interest-> preference_3])->orderByRaw("FIELD(item_category, '$interest->preference_1', '$interest->preference_2', '$interest->preference_3')")->latest()->paginate(5,['*'], 'page_a');
+      $interest_posts=DB::table('posts')->where('usertype', 'Seller')->wherein('item_category',[$interest->preference_1, $interest->preference_2, $interest->preference_3])->orderByRaw("FIELD(item_category, '$interest->preference_1', '$interest->preference_2', '$interest->preference_3')")->inRandomOrder()->paginate(5,['*'], 'page_a');
       //dd($interest_posts);
       return view("layouts/home", ['interest_posts'=>$interest_posts, 'sellerposts'=>$sellerposts, 'buyerposts'=>$buyerposts]);
        //return $buyerposts;
@@ -110,7 +111,23 @@ class PostController extends Controller
 
     public function search(request $request)
     {
+        
 
+        if($query = $request->input('q'))
+        {
+          TNTSearch::selectIndex("posts.index");
+          $query = TNTSearch::search($request->input('q'), 1000);
+          
+          $sellerposts=Post::whereIn('Post_id', $query['ids'])->paginate(5, ['*'],'page_a');
+          $buyerposts=DB::table('posts')->where('usertype', 'Buyer')->latest()->paginate(5, ['*'], 'page_b');
+        }
+        else
+        {
+          $sellerposts=DB::table('posts')->where('usertype', 'Seller')->latest()->paginate(5, ['*'],'page_a');
+          $buyerposts=DB::table('posts')->where('usertype', 'Buyer')->latest()->paginate(5, ['*'], 'page_b');
+          return view("layouts/home", ['sellerposts'=>$sellerposts], ['buyerposts'=>$buyerposts]);
+        }
+        return view("layouts/home", ['sellerposts'=>$sellerposts], ['buyerposts'=>$buyerposts]);
     }
 
     public function display_meat()

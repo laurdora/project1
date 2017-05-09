@@ -66,7 +66,7 @@ Route::post('/login_check','LoginController@postlogin');
 Route::get('/logout','LoginController@user_logout')->middleware("auth");
 
 //Postcontroller route
-Route::post('/search','PostController@search');
+Route::get('/search', ['uses' => 'PostController@search', 'as' => 'search']);
 Route::post('/create_sellerpost','PostController@storesellerpost');
 Route::post('/create_buyerpost','PostController@storebuyerpost');
 Route::get('/filtercontent_meat','PostController@display_meat');
@@ -82,7 +82,9 @@ Route::post('/edit_post', 'PostController@edit');
 Route::delete('/delete_post', 'PostController@destroy');
 
 //admin route
-
+Route::get('/admin', function() {
+    return Redirect::to('/admin/login');
+});
 
 Route::get('/admin/login', function () {
     return view('auth/adminlogin');
@@ -90,7 +92,6 @@ Route::get('/admin/login', function () {
 
 Route::post('/admin/admin_login', 'Auth\AdminLoginController@postlogin');
 Route::get('/admin_logout', 'Auth\AdminLoginController@logout');
-
 Route::get('/admin/home', 'AdminController@index');
 Route::get('/admin/home/table_users', 'AdminController@getUsers');
 Route::get('/admin/home/table_posts', 'AdminController@getPosts');

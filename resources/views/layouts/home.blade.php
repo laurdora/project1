@@ -77,7 +77,7 @@
                        </div>
                     </div>
                     @endforeach
-                  @if (Session::has('interest_posts'))
+                  @if (! empty($interest_posts))
                   {{$sellerposts->appends(['page_c'=>$buyerposts->currentPage()])->appends(['page_a'=>$interest_posts->currentPage()])->links()}}
                   @else
                   {{$sellerposts->appends(['page_c'=>$buyerposts->currentPage()])->links()}}
@@ -114,7 +114,7 @@
                        </div>
                     </div>
                     @endforeach
-                    @if (Session::has('interest_posts'))
+                    @if (! empty($interest_posts))
                     {{$buyerposts->appends(['page_b'=>$sellerposts->currentPage()])->appends(['page_a'=>$interest_posts->currentPage()])->links()}}
                     @else
                     {{$buyerposts->appends(['page_b'=>$sellerposts->currentPage()])->links()}}

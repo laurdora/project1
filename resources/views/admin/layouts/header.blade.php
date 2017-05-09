@@ -10,17 +10,17 @@
     <title>Miminium</title>
  
     <!-- start: Css -->
-    <link rel="stylesheet" type="text/css" href="/asset/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../../asset/css/bootstrap.min.css">
 
       <!-- plugins -->
-      <link rel="stylesheet" type="text/css" href="/asset/css/plugins/font-awesome.min.css"/>
-      <link rel="stylesheet" type="text/css" href="/asset/css/plugins/simple-line-icons.css"/>
-      <link rel="stylesheet" type="text/css" href="/asset/css/plugins/animate.min.css"/>
-      <link rel="stylesheet" type="text/css" href="/asset/css/plugins/fullcalendar.min.css"/>
-	<link href="/asset/css/style.css" rel="stylesheet">
+      <link rel="stylesheet" type="text/css" href="../../asset/css/plugins/font-awesome.min.css"/>
+      <link rel="stylesheet" type="text/css" href="../../asset/css/plugins/simple-line-icons.css"/>
+      <link rel="stylesheet" type="text/css" href="../../asset/css/plugins/animate.min.css"/>
+      <link rel="stylesheet" type="text/css" href="../../asset/css/plugins/fullcalendar.min.css"/>
+	<link href="../../asset/css/style.css" rel="stylesheet">
 	<!-- end: Css -->
 
-	<link rel="shortcut icon" href="/asset/img/logomi.png">
+	<link rel="shortcut icon" href="../../asset/img/logomi.png">
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -58,7 +58,7 @@
               <ul class="nav navbar-nav navbar-right user-nav">
                 <li class="user-name"><span>Admin </span></li>
                   <li class="dropdown avatar-dropdown">
-                   <img src="/asset/img/avatar.jpg" class="img-circle avatar" alt="user name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"/>
+                   <img src="../../asset/img/avatar.jpg" class="img-circle avatar" alt="user name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"/>
                    <ul class="dropdown-menu user-dropdown">
                      <li><a href="{{URL::to('admin_logout')}}"><span class="fa fa-user"></span> Log out</a></li>
                   </ul>

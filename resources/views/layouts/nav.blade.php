@@ -24,10 +24,9 @@
     </ul> -->
     @if(Auth::check())
 
-     <form class="navbar-form navbar-left" action="search" method="post">
-        <input type="hidden" name="_token" value="{{csrf_token()}}">
+     <form class="navbar-form navbar-left" action="{{route('search')}}" method="get">
         <div class="form-group input-group">
-          <input type="text" class="form-control" placeholder="Search..">
+          <input type="search" class="form-control" name="q" placeholder="Search...">
           <span class="input-group-btn">
             <button class="btn btn-default" type="submit">
               <span class="glyphicon glyphicon-search"></span>
