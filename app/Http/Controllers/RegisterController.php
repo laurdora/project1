@@ -13,6 +13,7 @@ use Auth;
 use Hash;
 
 
+
 class RegisterController extends Controller
 {
     // Function for register validation
@@ -88,55 +89,33 @@ class RegisterController extends Controller
         //return Redirect::to('login')->with('deleted', 'Congratulations! Your account has successfully registered!');
     }
 
-    public function admin_credential_rules(array $data)
+    public function update(request $request)
     {
-      $messages = [
-        'current-password.required' => 'Please enter current password',
-        'password.required' => 'Please enter password',
-      ];
+        //to test this (what data this function request or capture when you post form?) : dd($request);
+        $this->validate($request , [
+            
+            'fname' =>'required',
+            'company' =>'required',
+            'email' =>'required|email',
+            'address' =>'required',
+            'state' =>'required',
+            'country' =>'required',
+            'zip' =>'required|numeric',
+            'phonenum' =>'required|numeric',
+            ]);
 
-      $validator = Validator::make($data, [
-        'current-password' => 'required',
-        'password' => 'required|same:password',
-        'password-confirmation' => 'required|same:password',     
-      ], $messages);
+        $user = Auth::user();
+        $user->fname = $request->fname;
+        $user->company = $request->company;
+        $user->email = $request->email;
+        $user->address = $request->address;
+        $user->state = $request->state;
+        $user->country = $request->country;
+        $user->zip = $request->zip;
+        $user->phonenum = $request->phonenum;
+        $user->update();
 
-      return $validator;
-    }  
+        return Redirect::to('my_account');
 
-    public function postCredentials(Request $request)
-    {
-      if(Auth::Check())
-      {
-        $request_data = $request->All();
-        $validator = $this->admin_credential_rules($request_data);
-        if($validator->fails())
-        {
-          return response()->json(array('error' => $validator->getMessageBag()->toArray()), 400);
-        }
-        else
-        {
-          $current_password = Auth::User()->password;           
-          if(Hash::check($request_data['current-password'], $current_password))
-          {           
-            $user_id = Auth::User()->id;                       
-            $obj_user = User::find($user_id);
-            $obj_user->password = Hash::make($request_data['password']);;
-            $obj_user->save(); 
-            return "ok";
-          }
-          else
-          {           
-            $error = array('current-password' => 'Please enter correct current password');
-            return response()->json(array('error' => $error), 400);   
-          }
-        }     
-      }
-      else
-      {
-        return redirect()->to('/');
-      }    
     }
-    
-
 }

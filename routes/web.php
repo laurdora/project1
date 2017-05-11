@@ -57,11 +57,11 @@ Route::get('/index','PostController@index');
 
 //RegisterController route
 Route::post('/register_action','RegisterController@store');
-Route::get('/userdetail', 'RegisterController@show_userprofile');
+Route::get('/userdetail', 'RegisterController@show_userprofile'); //my_account -> done
 Route::delete('/delete_user', 'RegisterController@destroy');
 
-Route::post('/','RegisterController@postCredentials');
-
+Route::post('/update_user', 'RegisterController@update'); //edit profile -> done
+//Route::post('/my_account','RegisterController@postCredentials'); //change password
 
 //LoginController route
 Route::post('/login_check','LoginController@postlogin');
@@ -72,10 +72,8 @@ Route::post('/search','PostController@search');
 Route::post('/create_sellerpost','PostController@storesellerpost');
 Route::post('/create_buyerpost','PostController@storebuyerpost');
 
-Route::get('/edit_sellerpost','PostController@editsellerpost');
-Route::get('/edit_buyerpost','PostController@editbuyerpost');
-//Route::post();
-//Route::post();
+Route::get('/edit_sellerpost','PostController@updatesellerpost'); //edit post (seller/buyer)
+Route::post('/edit_buyerpost','PostController@updatebuyerpost'); //edit first and update data
 
 Route::get('/filtercontent_meat','PostController@display_meat');
 Route::get('/filtercontent_milk','PostController@display_milk');
@@ -86,7 +84,7 @@ Route::get('/filtercontent_wine','PostController@display_wine');
 Route::get('/filtercontent_grain','PostController@display_grain');
 Route::get('/view_description', 'PostController@show_description');
 Route::post('/human_verfication', 'PostController@human_verification');
-Route::post('/edit_post', 'PostController@edit');
+//Route::post('/edit_post', 'PostController@edit'); //what???
 Route::delete('/delete_post', 'PostController@destroy');
 
 //admin route

@@ -5,7 +5,6 @@
 		<h2 style='margin-left:5%' >Account details</h2>
 		<hr>
 
-
 			<div class='row content'>
 				<div style='margin-left:5%' class ='col-sm-5'>
 
