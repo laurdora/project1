@@ -59,6 +59,8 @@ Route::get('/index','PostController@index');
 Route::post('/register_action','RegisterController@store');
 Route::get('/userdetail', 'RegisterController@show_userprofile'); //my_account -> done
 Route::delete('/delete_user', 'RegisterController@destroy');
+Route::post('passwordUpdate', 'RegisterController@change_password'); //change password
+Route::get('passwordUpdate', 'RegisterController@change_password');
 
 Route::post('/update_user', 'RegisterController@update'); //edit profile -> done
 //Route::post('/my_account','RegisterController@postCredentials'); //change password
@@ -71,8 +73,8 @@ Route::get('/logout','LoginController@user_logout')->middleware("auth");
 Route::post('/search','PostController@search');
 Route::post('/create_sellerpost','PostController@storesellerpost');
 Route::post('/create_buyerpost','PostController@storebuyerpost');
-
-Route::get('/edit_sellerpost','PostController@updatesellerpost'); //edit post (seller/buyer)
+Route::post('/edit_post', 'PostController@edit'); //post? get?
+Route::post('/edit_sellerpost','PostController@updatesellerpost'); //edit post (seller/buyer)
 Route::post('/edit_buyerpost','PostController@updatebuyerpost'); //edit first and update data
 
 Route::get('/filtercontent_meat','PostController@display_meat');
@@ -84,7 +86,6 @@ Route::get('/filtercontent_wine','PostController@display_wine');
 Route::get('/filtercontent_grain','PostController@display_grain');
 Route::get('/view_description', 'PostController@show_description');
 Route::post('/human_verfication', 'PostController@human_verification');
-//Route::post('/edit_post', 'PostController@edit'); //what???
 Route::delete('/delete_post', 'PostController@destroy');
 
 //admin route

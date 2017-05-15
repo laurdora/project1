@@ -2,10 +2,10 @@
 
 	<div style='margin-top:5%' class="container-fluid">
 		<div style='width:50%;margin:auto;' class="panel panel-default">
-		<h2 style='margin-left:5%' >Edit Post</h2>
+		<h2 style='margin-left:5%'>Edit Post</h2>
 		<hr>
 		@if(Auth::user()->usertype=="Seller")
-		<form action="edit_sellerpost" enctype="multipart/form-data" method="get">
+		<form action="edit_sellerpost" enctype="multipart/form-data" method="post">
 			{{csrf_field()}}
 
 			<div class='row content'>
@@ -13,15 +13,15 @@
 
 				  	<div class="form-group">
 					  <label for="itemcategory">Item category:</label>
-					  <select class="form-control" name="itemcategory" id="itemcategory">
-					    <option value=" " >Please select</option>
-					    <option>meat</option>
-					    <option>milk</option>
-                        <option>fruit</option>
-                        <option>vegetable</option>
-                        <option>cheese</option>
-                        <option>wine</option>
-                        <option>grain</option>
+					  <select class="form-control" name="itemcategory" id="itemcategory" >
+					    <option value="" >Please select</option>
+					    <option>Meat</option>
+					    <option>Milk</option>
+                        <option>Fruit</option>
+                        <option>Vegetable</option>
+                        <option>Cheese</option>
+                        <option>Wine</option>
+                        <option>Grain</option>
 					  </select>
 					   @if($errors->has('itemcategory'))<div style='margin-top:5px' class="alert alert-danger"> <p>{{$errors->first('itemcategory')}}</p> </div>@endif
 					</div>
@@ -31,20 +31,20 @@
 					<label for="price">Price:</label>
 					<div class="input-group">
                         <div class="input-group-addon">$</div>
-                        <input type="price" class="form-control" name="price" id="price" placeholder="Amount">
+                        <input type="price" class="form-control" name="price" id="price" value="" placeholder="Amount">
 					</div>
 					 @if($errors->has('price'))<div style='margin-top:5px' class="alert alert-danger"> <p>{{$errors->first('price')}}</p> </div>@endif
 					</div>
 
 					<div class="form-group">
 					    <label for="Ptitle">Title:</label>
-					    <input type="Ptitle" class="form-control" name="Ptitle" id="Ptitle" placeholder="Post Title">
+					    <input type="Ptitle" class="form-control" name="Ptitle" id="Ptitle" value="" placeholder="Post Title">
 						@if($errors->has('Ptitle'))<div style='margin-top:5px' class="alert alert-danger"> <p>{{$errors->first('Ptitle')}}</p> </div>@endif
 					</div>	
 
 					<div class="form-group">
 					    <label for="description">Description:</label>
-					   <textarea class="form-control" name="description" cols="50" rows="10" placeholder="Please describe your item here..."></textarea>
+					   <textarea class="form-control" name="description" cols="50" rows="10" value="{{$post->description}}" placeholder="Please describe your item here..."></textarea>
 						@if($errors->has('description'))<div style='margin-top:5px' class="alert alert-danger"> <p>{{$errors->first('description')}}</p> </div>@endif
 					</div>
 					
@@ -68,7 +68,7 @@
 
 		@else
 
-		<form action="edit_buyerpost" enctype="multipart/form-data" method="get">
+		<form action="edit_buyerpost" enctype="multipart/form-data" method="post">
 			{{csrf_field()}}
 
 			<div class='row content'>
@@ -91,13 +91,13 @@
 
 					<div class="form-group">
 					    <label for="Ptitle">Title:</label>
-					    <input type="Ptitle" class="form-control" name="Ptitle" id="Ptitle" placeholder="Post Title">
+					    <input type="Ptitle" class="form-control" name="Ptitle" id="Ptitle" value="" placeholder="Post Title">
 						@if($errors->has('Ptitle'))<div style='margin-top:5px' class="alert alert-danger"> <p>{{$errors->first('Ptitle')}}</p> </div>@endif
 					</div>	
 
 					<div class="form-group">
 					    <label for="description">Description:</label>
-					   <textarea class="form-control" name="description" id="description" cols="50" rows="10" >{{{Input::old('description')}}}</textarea>
+					   <textarea class="form-control" name="description" id="description" value="" cols="50" rows="10" >{{{Input::old('description')}}}</textarea>
 						@if($errors->has('description'))<div style='margin-top:5px' class="alert alert-danger"> <p>{{$errors->first('description')}}</p> </div>@endif
 					</div>
 

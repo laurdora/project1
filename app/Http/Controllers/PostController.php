@@ -80,22 +80,32 @@ class PostController extends Controller
           return redirect::to("index");
     }
 
-    public function updatesellerpost(){
+    public function edit(request $request)
+    {
+      $posts = DB::table('posts')->where('Post_id', $request->Post_id)->get();
+      $post = $posts[0];
+      return view('edit_post');
+    }
 
-      //var_dump($request['image']); //Check data input
-
+    public function updatesellerpost(request $request)
+    {
+      //Post::where('Post_id', $request->Post_id)->update();
+      
       //Validate post information
       $this->validate($request, [
+
         'itemcategory' =>'required',
         'price' =>'required|numeric',
         'Ptitle' =>'required|max:50',
         'description' =>'required',
         'image' => 'required|image|mimes:jpeg,jpg,png'
-        ]
-        ,[
+        ],
+
+        [
         'price.numeric' => 'Please offer a price in numeric form',
         'Ptitle.max'=> 'Your title is too long, please write your title within 50 characters',
-        ]);
+        ]); //validate works
+
 
       //Store image in path://storage/app/public
       $image = $request->file('image');
@@ -103,57 +113,44 @@ class PostController extends Controller
       storage::disk('public')->put($filename, File::get($image));
 
       //store post into Post table
-      $post = new Post();
-      $post->item_category = $request['itemcategory'];
+      /*$post = new Post;
+      $post->item_category = $request->itemcategory;
       $post->username = Auth::user()->username;
       $post->usertype = Auth::user()->usertype;
-      $post->price = $request['price'];
-      $post->title = $request['Ptitle'];
-      $post->description = $request['description'];
-      $post->image = $filename;
-      $request->user()->posts()->save($post);
-      //return redirect::to("/home")->with('create_post_success','Congratulations! Your post has been created!');
+      $post->price = $request->price;
+      $post->title = $request->Ptitle;
+      $post->description = $request->description;
+      $post->image = $filename;*/
+      $post->update($request->all());
+      //$request->user()->posts()->update();
+      //$request->user()->posts()->save($post);
       return redirect::to("index");
+      //->with('post_updated','Congratulations! Your post has been updated!');
     }
 
-        public function updatebuyerpost(request $request){
-    
-          //var_dump($request['image']); //Check data input
-    
-          //Validate post information
+    public function updatebuyerpost(request $request)
+    {
+      //Validate post information
           $this->validate($request, [
             'itemcategory' =>'required',
             'Ptitle' =>'required|max:50',
             'description' =>'required',
             'Ptitle.max'=> 'Your title is too long, please write your title within 50 characters',
-        ]);
+        ]); //validate works
     
           //store post into Post table
-          $post = new Post();
+         /* $post = new Post();
           $post->item_category = $request['itemcategory'];
           $post->username = Auth::user()->username;
           $post->usertype = Auth::user()->usertype;
           $post->title = $request['Ptitle'];
           $post->description = $request['description'];
-          $request->user()->posts()->save($post);
+          $request->user()->posts()->save($post);*/
           //return redirect::to("/home")->with('create_post_success','Congratulations! Your post has been created!');
+          $post->update($request->all());
           return redirect::to("index");
-
-          Post::where('Post_id', $request->Post_id)->delete();
     }
 
-
-    public function editbuyerpost()
-    {
-      //find item
-      $request->Post_id;
-      $request->item_category = $post['itemcategory'];
-    }
-
-    public function editsellerpost()
-    {
-
-    }
 
     public function index()
     {

@@ -115,7 +115,51 @@ class RegisterController extends Controller
         $user->phonenum = $request->phonenum;
         $user->update();
 
-        return Redirect::to('my_account');
+        return Redirect::to('my_account')->with('profile_updated', 'your profile has been updated');
 
+    }
+
+    public function change_password(request $request)
+    {
+       /* $this->validate($request , [
+            
+            'password' =>'required|min:6|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/',
+            'cpassword' =>'required|same:password',
+            ],
+
+            [
+            'password.min'=> 'The confirm password must be at least 6 characters',
+            'cpassword.same' => 'The password and confirm password must be the same',
+            'password.regex' => 'Your password must contain one uppercase and one lowercase letters and one number'
+            ]);
+        */
+        $user = Auth::user();
+        $current_password = Input::get('current_password');
+        $password = bcrypt(Input::get('password'));
+
+        $user_count = Registered_user::where('id',$user->id)->count();
+
+        //$user->password=Hash::make($request['password']);
+        //$user->update();
+
+        if (Hash::check($current_password, $user->password) && $user_count == 1) {
+            $user->password = $password;
+            try {
+                $user->save();
+                $flag = TRUE;
+            }
+            catch(\Exception $e){
+                $flag = FALSE;
+            }
+            if($flag){
+                return redirect('/my_account')->with('success',"Password changed successfully.");
+            }
+            else{
+                return redirect('/change_password')->with("danger","Unable to process request this time. Try again later");
+            }
+        }
+        else{
+            return redirect('/change_password')->with("warning","Your current password do not match our record");
+        }
     }
 }

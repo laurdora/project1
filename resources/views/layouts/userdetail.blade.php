@@ -29,6 +29,11 @@
                          {{Session::get('post_deleted')}} 
                     </div>
                     @endif
+                    @if (Session::has('post_updated'))
+                    <div style='margin-left:7%;text-align:center' class="alert alert-success col-sm-10"> 
+                         {{Session::get('post_updated')}} 
+                    </div>
+                    @endif
                      @foreach ($posts as $post)
                     <div class="row" style="border-bottom:1px solid #ddd">
                        <div class="col-md-4" style="margin-bottom:10px">

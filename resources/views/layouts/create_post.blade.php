@@ -15,13 +15,13 @@
 					  <label for="itemcategory">Item category:</label>
 					  <select class="form-control" name="itemcategory" id="itemcategory">
 					    <option value=" " >Please select</option>
-					    <option>meat</option>
-					    <option>milk</option>
-                        <option>fruit</option>
-                        <option>vegetable</option>
-                        <option>cheese</option>
-                        <option>wine</option>
-                        <option>grain</option>
+					    <option>Meat</option>
+					    <option>Milk</option>
+                        <option>Fruit</option>
+                        <option>Vegetable</option>
+                        <option>Cheese</option>
+                        <option>Wine</option>
+                        <option>Grain</option>
 					  </select>
 					   @if($errors->has('itemcategory'))<div style='margin-top:5px' class="alert alert-danger"> <p>{{$errors->first('itemcategory')}}</p> </div>@endif
 					</div>

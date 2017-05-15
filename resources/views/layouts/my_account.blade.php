@@ -4,6 +4,18 @@
 		<div style='width:50%;margin:auto;' class="panel panel-default">
 		<h2 style='margin-left:5%' >Account details</h2>
 		<hr>
+			 @if (Session::has('profile_updated'))
+	        <div style='margin-left:7%;text-align:center' class="alert alert-success col-sm-10"> 
+	             {{Session::get('profile_updated')}}
+	        </div>
+	        @endif
+
+	        			 @if (Session::has('success'))
+	        <div style='margin-left:7%;text-align:center' class="alert alert-success col-sm-10"> 
+	             {{Session::get('success')}}
+	        </div>
+	        @endif
+
 
 			<div class='row content'>
 				<div style='margin-left:5%' class ='col-sm-5'>

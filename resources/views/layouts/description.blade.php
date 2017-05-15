@@ -73,7 +73,8 @@
                     <ul class="menu-items" style="list-style-type:none;font-size:15px;display:inline-flex;margin-bottom:0px;margin-top:20px">
                         <li style="margin-right:25px;font-weight:lighter;cursor:pointer">Created at:{{$description->created_at}}</li>
                         <li style="margin-right:25px;font-weight:lighter;cursor:pointer">Updated at:{{$description->updated_at}}</li>
-                        <li style="margin-right:25px;font-weight:lighter;cursor:pointer">Item type:{{$description->item_category}}</li>                        
+                        <li style="margin-right:25px;font-weight:lighter;cursor:pointer">Item type:{{$description->item_category}}</li>
+                         <li style="margin-right:25px;font-weight:lighter;cursor:pointer">Price: {{$description->price}}</li>                  
                     </ul>
                     <div style="width:100%;border-top:1px solid silver">
                         <p><img src="storage/{{$description->image}}" class="img-thumbnail" style="width: 30%; height: 30%px; margin-top:10px"></p>
