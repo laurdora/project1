@@ -49,7 +49,9 @@
         @endif
         <div class="col-md-4">
         <div class="panel panel-default">
-            <div class="panel-heading" style="font-size: 25px;text-shadow: 0px 0px 5px white)">Product supply</div>
+            <div class="panel-heading" style="font-size: 25px;text-shadow: 0px 0px 5px white)">
+            Product supply 
+            </div>
                 <div class="panel-body">
                      @foreach ($sellerposts as $sellerpost)
                     <div class="row" style="border-bottom:1px solid #ddd">

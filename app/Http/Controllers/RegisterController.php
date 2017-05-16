@@ -18,6 +18,15 @@ class RegisterController extends Controller
     // Function for register validation
     public function store(request $request){
         
+        $user = Registered_user::where('username', '=', $request->username)->first();
+        $email = Registered_user::where('email', '=', $request->email)->first();
+        if ($email !== null || $user !== null)
+        {
+            return Redirect::back()->with('existed', 'The email/username you are using already existed.');
+        }
+        else 
+        {
+
     	$this->validate($request , [
             
             'fname' =>'required',
@@ -53,7 +62,7 @@ class RegisterController extends Controller
             $users->phonenum=$request['phonenum'];
             
             $users->save();
-
+            
             $preference = new user_preference();
             $preference->username=$request['username'];
             $preference->preference_1=$request['preference_1'];
@@ -64,6 +73,7 @@ class RegisterController extends Controller
 
 
         	return Redirect::to('login')->with('success','Congratulations! Your account has successfully registered!');
+            }
     	}
 
     public function show_userprofile(request $request)
@@ -87,5 +97,65 @@ class RegisterController extends Controller
         //return Redirect::to('login')->with('deleted', 'Congratulations! Your account has successfully registered!');
     }
     
+    public function update(request $request)
+    {
+        $this->validate($request , [
+            
+            'fname' =>'required',
+            'company' =>'required',
+            'email' =>'required|email',
+            'address' =>'required',
+            'state' =>'required',
+            'country' =>'required',
+            'zip' =>'required|numeric',
+            'phonenum' =>'required|numeric',
+            ]);
 
+        $user = Auth::user();
+        $user->fname = $request->fname;
+        $user->company = $request->company;
+        $user->email = $request->email;
+        $user->address = $request->address;
+        $user->state = $request->state;
+        $user->country = $request->country;
+        $user->zip = $request->zip;
+        $user->phonenum = $request->phonenum;
+        $user->update();
+
+        return Redirect::to('my_account')->with('profile_updated', 'your profile has been updated');
+
+    }
+
+        public function change_password(request $request)
+    {
+        $this->validate($request , [
+            
+            'current_password' =>'required|min:6|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/',
+            'password' =>'required|min:6|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/',
+            'password_confirmation' =>'required|same:password',
+            ],
+
+            [
+            'current_password.min'=> 'The confirm password must be at least 6 characters',
+            'password.min'=> 'The confirm password must be at least 6 characters',
+            'password_confirmation.same' => 'The password and confirm password must be the same',
+            'current_password.regex' => 'Your password must contain one uppercase and one lowercase letters and one number',
+            'password.regex' => 'Your password must contain one uppercase and one lowercase letters and one number',
+            ]);
+        
+        if ($request->current_password == $request->password){
+            return Redirect::back()->with('samepassword', 'Current password and new password should not be the same, please try again.');
+        }
+        else{
+            $user = Auth::user();
+            if (Hash::check($request->current_password, $user->password)) {
+                $user->password=Hash::make($request['password']);
+                $user->update();
+                return redirect('/my_account')->with('success', 'Your password has successfully changed !');
+            }
+            else{
+                return Redirect::back()->with("warning","Your current password do not match our record, please enter yout current password correctly");
+            }
+        }
+    }
 }

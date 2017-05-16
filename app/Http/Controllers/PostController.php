@@ -82,9 +82,72 @@ class PostController extends Controller
         }
 
     public function edit(request $request)
+    { 
+      $categories = ['meat','milk','fruit','vegetable','cheese','wine','grain'];
+      $posts = DB::table('posts')->where('Post_id', $request->Post_id)->get();
+      $post = $posts[0];
+      return view('layouts/edit_post', ['post'=>$post], ['categories'=>$categories]);
+    }
+
+    public function updatesellerpost(request $request)
     {
+      //Post::where('Post_id', $request->Post_id)->update();
+      
+      //Validate post information
+      $this->validate($request, [
 
+        'itemcategory' =>'required',
+        'price' =>'required|numeric',
+        'Ptitle' =>'required|max:50',
+        'description' =>'required',
+        'image' => 'image|mimes:jpeg,jpg,png'
+        ],
 
+        [
+        'price.numeric' => 'Please offer a price in numeric form',
+        'Ptitle.max'=> 'Your title is too long, please write your title within 50 characters',
+        ]); //validate works
+      
+
+      //store post into Post table
+      $post = Post::where('Post_id',$request->Post_id)->first();
+      $post->item_category = $request->itemcategory;
+      $post->price = $request->price;
+      $post->title = $request->Ptitle;
+      $post->description = $request->description;
+      if ($request->image !== null)
+      {
+      Storage::disk('public')->delete($post->image);
+      //Store image in path://storage/app/public
+      $image = $request->file('image');
+      $filename = Auth::user()->username . '_' . time() . '.' . $image->extension();
+      storage::disk('public')->put($filename, File::get($image));
+      
+      $post->image = $filename;
+      }
+      $post->save();
+      return redirect::to("index");
+      //->with('post_updated','Congratulations! Your post has been updated!');
+    }
+
+    public function updatebuyerpost(request $request)
+    {
+      //Validate post information
+          $this->validate($request, [
+            'itemcategory' =>'required',
+            'Ptitle' =>'required|max:50',
+            'description' =>'required',
+            'Ptitle.max'=> 'Your title is too long, please write your title within 50 characters',
+        ]); //validate works
+    
+          //store post into Post table
+          $post = Post::where('Post_id',$request->Post_id)->first();
+          $post->item_category = $request['itemcategory'];
+          $post->title = $request['Ptitle'];
+          $post->description = $request['description'];
+          $post->update();
+
+      return redirect::to("index");
     }
 
     public function index()
@@ -111,13 +174,11 @@ class PostController extends Controller
 
     public function search(request $request)
     {
-        
-
+        $key = $request->q;
         if($query = $request->input('q'))
         {
           TNTSearch::selectIndex("posts.index");
           $query = TNTSearch::search($request->input('q'), 1000);
-          
           $sellerposts=Post::whereIn('Post_id', $query['ids'])->paginate(5, ['*'],'page_a');
           $buyerposts=DB::table('posts')->where('usertype', 'Buyer')->latest()->paginate(5, ['*'], 'page_b');
         }
@@ -125,9 +186,9 @@ class PostController extends Controller
         {
           $sellerposts=DB::table('posts')->where('usertype', 'Seller')->latest()->paginate(5, ['*'],'page_a');
           $buyerposts=DB::table('posts')->where('usertype', 'Buyer')->latest()->paginate(5, ['*'], 'page_b');
-          return view("layouts/home", ['sellerposts'=>$sellerposts], ['buyerposts'=>$buyerposts]);
+          return view("layouts/home", ['sellerposts'=>$sellerposts, 'buyerposts'=>$buyerposts, 'key'=>$key]);
         }
-        return view("layouts/home", ['sellerposts'=>$sellerposts], ['buyerposts'=>$buyerposts]);
+        return view("layouts/home", ['sellerposts'=>$sellerposts, 'buyerposts'=>$buyerposts, 'key'=>$key]);
     }
 
     public function display_meat()
@@ -195,7 +256,7 @@ class PostController extends Controller
         $client = new Client();
         $response = $client->post('https://www.google.com/recaptcha/api/siteverify', [
           'form_params' => array(
-            'secret' => '6LfHph8UAAAAAHeINNv4jK-2xv9vQlyF7tukHqpj',
+            'secret' => '6Lc2RCAUAAAAAP73clpEH6artwHRESrvZbz209SX',
             'response' => $token
             )
           ]);
@@ -215,7 +276,9 @@ class PostController extends Controller
 
     public function destroy(request $request)
     {
-      Post::where('Post_id', $request->Post_id)->delete();
+      $post=Post::where('Post_id', $request->Post_id)->first();
+      Storage::disk('public')->delete($post->image);
+      $post->delete();
       return Redirect::back()->with('post_deleted', 'Your post has been deleted');
     }
 }

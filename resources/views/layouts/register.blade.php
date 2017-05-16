@@ -4,7 +4,11 @@
 		<div style='width:50%;margin:auto;' class="panel panel-default">
 		<h2 style='margin-left:5%' >Register</h2>
 		<hr>
-
+		@if (Session::has('existed'))
+	        <div style='margin-left:7%;text-align:center' class="alert alert-warning col-sm-10"> 
+	             {{Session::get('existed')}}
+	        </div>
+	        @endif
 		<form action="register_action" method="post">
 
 			<input type="hidden" name="_token" value="{{csrf_token()}}">
@@ -103,43 +107,43 @@
 				<div style='margin-left:5%' class ='col-sm-5'>
 					<div class="form-group">
 						<label for="usertype">First Preference:</label>
-						<select class="form-control" name="preference_1">
-							<option value="" >Select option</option>
-							<option>meat</option>
-							<option>milk</option>
-							<option>fruit</option>
-							<option>vegetable</option>
-							<option>cheese</option>
-							<option>wine</option>
-							<option>grain</option>
+						<select class="form-control" name="preference_1" id="preference_1" >
+							<option value="01" >Select option</option>
+							<option value="meat">meat</option>
+							<option value="milk">milk</option>
+							<option value="fruit">fruit</option>
+							<option value="vegetable">vegetable</option>
+							<option value="cheese">cheese</option>
+							<option value="wine">wine</option>
+							<option value="grain">grain</option>
 						</select>
 					</div>
 		
 					<div class="form-group">
 						<label for="usertype">Second Preference:</label>
-						<select class="form-control" name="preference_2">
+						<select class="form-control" name="preference_2" id="preference_2" >
 							<option value="" >Select option</option>
-							<option>meat</option>
-							<option>milk</option>
-							<option>fruit</option>
-							<option>vegetable</option>
-							<option>cheese</option>
-							<option>wine</option>
-							<option>grain</option>
+							<option value="meat">meat</option>
+							<option value="milk">milk</option>
+							<option value="fruit">fruit</option>
+							<option value="vegetable">vegetable</option>
+							<option value="cheese">cheese</option>
+							<option value="wine">wine</option>
+							<option value="grain">grain</option>
 						</select>
 					</div>
 		
 					<div class="form-group">
 						<label for="usertype">Third Preference:</label>
-						<select class="form-control" name="preference_3">
+						<select class="form-control" name="preference_3" id="prefer"  >
 							<option value="" >Select option</option>
-							<option>meat</option>
-							<option>milk</option>
-							<option>fruit</option>
-							<option>vegetable</option>
-							<option>cheese</option>
-							<option>wine</option>
-							<option>grain</option>
+							<option value="meat">meat</option>
+							<option value="milk">milk</option>
+							<option value="fruit">fruit</option>
+							<option value="vegetable">vegetable</option>
+							<option value="cheese">cheese</option>
+							<option value="wine">wine</option>
+							<option value="grain">grain</option>
 						</select>
 					</div>
 				</div>
@@ -158,5 +162,6 @@
 
 
 @include('layouts.footer')
+
 </body>
 </html>

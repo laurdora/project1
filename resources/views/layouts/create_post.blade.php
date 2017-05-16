@@ -15,7 +15,7 @@
 					  <label for="itemcategory">Item category:</label>
 					  <select class="form-control" name="itemcategory" id="itemcategory">
 					    <option value=" " >Please select</option>
-					    <option>meat</option>
+					    <option selected='selected'>meat</option>
 					    <option>milk</option>
                         <option>fruit</option>
                         <option>vegetable</option>
@@ -79,7 +79,7 @@
 					  <select class="form-control" name="itemcategory" id="itemcategory">
 					    <option value=" " >Please select</option>
 					    <option>meat</option>
-					    <option>milk</option>
+					    <option selected='selected'>milk</option>
                         <option>fruit</option>
                         <option>vegetable</option>
                         <option>cheese</option>

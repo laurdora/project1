@@ -40,6 +40,8 @@ Route::get('/my_account', function () {
     return view('layouts/my_account');
 });
 
+Route::post('Update_user', 'RegisterController@update');
+
 Route::get('/edit_profile', function () {
     return view('layouts/edit_profile');
 });
@@ -58,8 +60,9 @@ Route::get('/index','PostController@index');
 //RegisterController route
 Route::post('/register_action','RegisterController@store');
 Route::get('/userdetail', 'RegisterController@show_userprofile');
+Route::post('/update_user', 'RegisterController@update');
 Route::delete('/delete_user', 'RegisterController@destroy');
-
+Route::post('/passwordUpdate', 'RegisterController@change_password');
 
 //LoginController route
 Route::post('/login_check','LoginController@postlogin');
@@ -79,6 +82,8 @@ Route::get('/filtercontent_grain','PostController@display_grain');
 Route::get('/view_description', 'PostController@show_description');
 Route::post('/human_verfication', 'PostController@human_verification');
 Route::post('/edit_post', 'PostController@edit');
+Route::post('/edit_buyerpost','PostController@updatebuyerpost');
+Route::post('/edit_sellerpost','PostController@updatesellerpost');
 Route::delete('/delete_post', 'PostController@destroy');
 
 //admin route

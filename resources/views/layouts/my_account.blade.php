@@ -4,38 +4,48 @@
 		<div style='width:50%;margin:auto;' class="panel panel-default">
 		<h2 style='margin-left:5%' >Account details</h2>
 		<hr>
+			 @if (Session::has('profile_updated'))
+	        <div style='margin-left:7%;text-align:center' class="alert alert-success col-sm-10"> 
+	             {{Session::get('profile_updated')}}
+	        </div>
+	        @endif
 
-
+	        @if (Session::has('success'))
+	        <div style='margin-left:7%;text-align:center' class="alert alert-success col-sm-10"> 
+	             {{Session::get('success')}}
+	        </div>
+	        @endif
+	        
 			<div class='row content'>
 				<div style='margin-left:5%' class ='col-sm-5'>
 
 				  	<div class="form-group">
 				  	  <label for="fname">Full name:</label>
-				  	  <input type="fname" class="form-control" name="fname" id="fname" placeholder="Firstname Lastname">
+				  	  <input readonly type="fname" class="form-control" name="fname" id="fname" value="{{Auth::user()->fname}}" placeholder="Firstname Lastname">
 				  		@if($errors->has('fname'))<div  style='margin-top:5px'class="alert alert-danger"> <p>{{$errors->first('fname')}}</p> </div>@endif
 				  	</div>
 					<div class="form-group">
 					    <label for="id">User ID:</label>
-					    <input type="id" class="form-control" name="user_id" id="user_id" placeholder="user id" value="">
+					    <input readonly type="id" class="form-control" name="username" id="username" value="{{Auth::user()->username}}" placeholder="user id" value="">
 						@if($errors->has('userId'))<div style='margin-top:5px' class="alert alert-danger"> <p>{{$errors->first('userId')}}</p> </div>@endif
 					</div>	
 
 					<div class="form-group">
 					    <label for="password">Password:</label>
-					    <input type="password" class="form-control" name="password" id="password" placeholder="enter password">
+					    <input readonly type="password" class="form-control" name="password" id="password" value="{{Auth::user()->password}}" placeholder="enter password">
 						@if($errors->has('password'))<div style='margin-top:5px' class="alert alert-danger"> <p>{{$errors->first('password')}}</p> </div>@endif
 					</div>	
 
 
 					<div class="form-group">
 					    <label for="email">Email:</label>
-					    <input type="email" class="form-control" name="email" id="email" placeholder="example@example.com">
+					    <input readonly type="email" class="form-control" name="email" id="email" value="{{Auth::user()->email}}" placeholder="example@example.com">
 					    @if($errors->has('email'))<div style='margin-top:5px' class="alert alert-danger"> <p>{{$errors->first('email')}}</p> </div>@endif
 					</div>	
 
 					<div class="form-group">
 					    <label for="phonenum">Contact number:</label>
-					    <input type="phonenum" class="form-control" name="phonenum" id="phonenum" placeholder="enter contact number">
+					    <input readonly type="phonenum" class="form-control" name="phonenum" id="phonenum" value="{{Auth::user()->phonenum}}" placeholder="enter contact number">
 					    @if($errors->has('phonenum'))<div style='margin-top:5px' class="alert alert-danger"> <p>{{$errors->first('phonenum')}}</p> </div>@endif
 					</div>	
 
@@ -45,30 +55,30 @@
 
 				  <div class="form-group">
 				    <label for="company">Company name:</label>
-				    <input type="company" class="form-control" name="company" id="company" placeholder="optional">
+				    <input readonly type="company" class="form-control" name="company" id="company" value="{{Auth::user()->company}}" placeholder="optional">
 				  </div>
 
 					<div class="form-group">
 					    <label for="address">Address:</label>
-					    <input type="address" class="form-control" name="address" id="address" placeholder="full address">
+					    <input readonly type="address" class="form-control" name="address" id="address" value="{{Auth::user()->address}}" placeholder="full address">
 					    @if($errors->has('address'))<div style='margin-top:5px' class="alert alert-danger"> <p>{{$errors->first('address')}}</p> </div>@endif
 					</div>
 
 					<div class="form-group">
 					    <label for="state">State:</label>
-					    <input type="state" class="form-control" name="state" id="state" placeholder="enter state">
+					    <input readonly type="state" class="form-control" name="state" id="state" value="{{Auth::user()->state}}" placeholder="enter state">
 					    @if($errors->has('state'))<div style='margin-top:5px' class="alert alert-danger"> <p>{{$errors->first('state')}}</p> </div>@endif
 					</div>
 
 					<div class="form-group">
 					    <label for="country">Country:</label>
-					    <input type="country" class="form-control" name="country" id="country" placeholder="Country">
+					    <input readonly type="country" class="form-control" name="country" id="country" value="{{Auth::user()->country}}" placeholder="Country">
 					    @if($errors->has('country'))<div style='margin-top:5px' class="alert alert-danger"> <p>{{$errors->first('country')}}</p> </div>@endif
 					</div>					
 
 					<div class="form-group">
 					    <label for="zip">Zip code:</label>
-					    <input type="zip" class="form-control" name="zip" id="zip" placeholder="zip code">
+					    <input readonly type="zip" class="form-control" name="zip" id="zip" value="{{Auth::user()->zip}}" placeholder="zip code">
 					    @if($errors->has('zip'))<div style='margin-top:5px' class="alert alert-danger"> <p>{{$errors->first('zip')}}</p> </div>@endif
 					</div>
 
