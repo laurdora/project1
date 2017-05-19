@@ -29,16 +29,16 @@ class RegisterController extends Controller
 
     	$this->validate($request , [
             
-            'fname' =>'required|alpha',
-            'username' =>'required',
+            'fname' =>'required|alpha|max:20',
+            'username' =>'required|max:20',
             'password' =>'required|min:6|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/',
             'cpassword' =>'required|same:password',
-            'company' =>'required|alpha',
+            'company' =>'required|alpha|max:40',
             'email' =>'required|email',
-            'address' =>'required',
-            'state' =>'required|alpha',
+            'address' =>'required|max:50',
+            'state' =>'required|alpha|max:15',
             'usertype' => 'required',
-            'country' =>'required|alpha',
+            'country' =>'required|alpha|max:15',
             'zip' =>'required|numeric|digits:4',
             'phonenum' =>'required|numeric|digits_between:10,13',
             ],
@@ -111,12 +111,12 @@ class RegisterController extends Controller
     {
         $this->validate($request , [
             
-            'fname' =>'required|alpha',
-            'company' =>'required|alpha',
+            'fname' =>'required|alpha|max:20',
+            'company' =>'required|alpha|max:40',
             'email' =>'required|email',
-            'address' =>'required',
-            'state' =>'required|alpha',
-            'country' =>'required|alpha',
+            'address' =>'required|max:50',
+            'state' =>'required|alpha|max:15',
+            'country' =>'required|alpha|max:15',
             'zip' =>'required|numeric|digits:4',
             'phonenum' =>'required|numeric|digits_between:10,13',
             ]);

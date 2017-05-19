@@ -62,6 +62,7 @@
 				  <div class="form-group">
 				    <label for="company">Company name:</label>
 				    <input type="company" class="form-control" name="company" id="company" placeholder="Company name">
+				    @if($errors->has('company'))<div style='margin-top:5px' class="alert alert-danger"> <p>{{$errors->first('company')}}</p> </div>@endif
 				  </div>
 
 					<div class="form-group">
