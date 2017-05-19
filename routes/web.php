@@ -14,6 +14,7 @@
 
 //Auth Middleware
 Route::group(['middleware' => 'auth'], function(){
+
     Route::get('/home', function () {
     return view('layouts/home');
     });
@@ -30,10 +31,7 @@ Route::group(['middleware' => 'auth'], function(){
     return view('layouts/my_account');
     });
 
-    Route::post('Update_user', 'RegisterController@update');
-
-    Route::get('/edit_profile', 'RegisterController@edit_profile');
-
+    
     Route::get('/change_password', function () {
     return view('layouts/change_password');
     });
@@ -42,17 +40,17 @@ Route::group(['middleware' => 'auth'], function(){
     return view('layouts/description');
     });
 
-//RegisterController route
-    Route::post('/register_action','RegisterController@store');
+    //RegisterController route
     Route::get('/userdetail', 'RegisterController@show_userprofile');
     Route::post('/update_user', 'RegisterController@update');
     Route::delete('/delete_user', 'RegisterController@destroy');
     Route::post('/passwordUpdate', 'RegisterController@change_password');
+    Route::get('/edit_profile', 'RegisterController@edit_profile');
 
-//LoginController route
+    //LoginController route
     Route::get('/logout','LoginController@user_logout');
 
-//Postcontroller route
+    //Postcontroller route
     Route::get('/index','PostController@index')->name('index');
     Route::get('/search', ['uses' => 'PostController@search', 'as' => 'search']);
     Route::post('/create_sellerpost','PostController@storesellerpost');
@@ -75,7 +73,12 @@ Route::group(['middleware' => 'auth'], function(){
 
 //Guest Middleware
 Route::group(['middleware' => 'guest'], function(){
+    
     Route::get('/', function () {
+    return view('layouts/login');
+    })->name('user.login');
+
+    Route::get('/login', function () {
     return view('layouts/login');
     })->name('user.login');
 
@@ -83,23 +86,26 @@ Route::group(['middleware' => 'guest'], function(){
     return view('layouts/register');
     });
 
-    Route::get('/login', function () {
-    return view('layouts/login');
-    })->name('user.login');
-
+    //LoginController route
     Route::post('/login_check','LoginController@postlogin');
+
+    //RegisterController route
+    Route::post('/register_action','RegisterController@store');
 });
+
 
 //Admin Middleware
 Route::group(['middleware' => 'auth:admin'], function(){
+
+    //AdminController Route
     Route::get('/admin_logout', 'Auth\AdminLoginController@logout');
     Route::get('/admin/home', 'AdminController@index')->name('admin.home');
     Route::get('/admin/home/table_users', 'AdminController@getUsers');
     Route::get('/admin/home/table_posts', 'AdminController@getPosts');
-
     Route::delete('admin/home/admin_deletepost', 'AdminController@destroy_post');
     Route::delete('admin/home/admin_deleteuser', 'AdminController@destroy_user');
 });
+
 
 //Admin guest Middleware
 Route::group(['middleware' => 'guest:admin'], function(){
@@ -111,8 +117,11 @@ Route::group(['middleware' => 'guest:admin'], function(){
     Route::get('/admin/login', function () {
     return view('auth/adminlogin');
     })->name('admin.login');
+
+    //AdminloginController Route
     Route::post('/admin/admin_login', 'Auth\AdminLoginController@postlogin');
 });
+
 
 //Auth::routes();
 

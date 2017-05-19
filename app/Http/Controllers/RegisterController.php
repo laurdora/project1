@@ -29,23 +29,26 @@ class RegisterController extends Controller
 
     	$this->validate($request , [
             
-            'fname' =>'required',
+            'fname' =>'required|alpha',
             'username' =>'required',
             'password' =>'required|min:6|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/',
             'cpassword' =>'required|same:password',
+            'company' =>'required|alpha',
             'email' =>'required|email',
             'address' =>'required',
-            'state' =>'required',
+            'state' =>'required|alpha',
             'usertype' => 'required',
-            'country' =>'required',
-            'zip' =>'required|numeric',
-            'phonenum' =>'required|numeric',
+            'country' =>'required|alpha',
+            'zip' =>'required|numeric|digits:4',
+            'phonenum' =>'required|numeric|digits_between:10,13',
             ],
 
             [
             'password.min'=> 'The confirm password must be at least 6 characters',
             'cpassword.same' => 'The password and confirm password must be the same',
-            'password.regex' => 'Your password must contain one uppercase and one lowercase letters and one number'
+            'password.regex' => 'Your password must contain one uppercase and one lowercase letters and one number',
+            'zip.digits' => 'Zip code should be a 4 digits number',
+
             ]);
 
             $users = new Registered_user();
@@ -108,14 +111,14 @@ class RegisterController extends Controller
     {
         $this->validate($request , [
             
-            'fname' =>'required',
-            'company' =>'required',
+            'fname' =>'required|alpha',
+            'company' =>'required|alpha',
             'email' =>'required|email',
             'address' =>'required',
-            'state' =>'required',
-            'country' =>'required',
-            'zip' =>'required|numeric',
-            'phonenum' =>'required|numeric',
+            'state' =>'required|alpha',
+            'country' =>'required|alpha',
+            'zip' =>'required|numeric|digits:4',
+            'phonenum' =>'required|numeric|digits_between:10,13',
             ]);
 
         $user = Auth::user();

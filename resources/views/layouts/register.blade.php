@@ -61,7 +61,7 @@
 
 				  <div class="form-group">
 				    <label for="company">Company name:</label>
-				    <input type="company" class="form-control" name="company" id="company" placeholder="optional">
+				    <input type="company" class="form-control" name="company" id="company" placeholder="Company name">
 				  </div>
 
 					<div class="form-group">
@@ -89,7 +89,7 @@
 					</div>
 
 					<div class="form-group">
-					    <label for="phonenum">phone number:</label>
+					    <label for="phonenum">phone number: (Please use '00' instead of '+')</label>
 					    <input type="phonenum" class="form-control" name="phonenum" id="phonenum" placeholder="1234567890">
 					    @if($errors->has('phonenum'))<div style='margin-top:5px' class="alert alert-danger"> <p>{{$errors->first('phonenum')}}</p> </div>@endif
 					</div>					
@@ -108,7 +108,7 @@
 					<div class="form-group">
 						<label for="usertype">First Preference:</label>
 						<select class="form-control" name="preference_1" id="preference_1" >
-							<option value="01" >Select option</option>
+							<option value="" >Select option</option>
 							<option value="meat">meat</option>
 							<option value="milk">milk</option>
 							<option value="fruit">fruit</option>

@@ -25,7 +25,7 @@ class CreateRegisteredUsersTable extends Migration
             $table->string('state');
             $table->string('country');
             $table->integer('zip');
-            $table->integer('phonenum');
+            $table->string('phonenum');
             $table->rememberToken();
             $table->timestamps();
         });
