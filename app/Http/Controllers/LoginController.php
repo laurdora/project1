@@ -9,6 +9,7 @@ use Auth;
 
 class LoginController extends Controller
 {
+
     public function postlogin(request $request)
     {
 

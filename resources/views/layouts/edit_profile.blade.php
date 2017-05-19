@@ -71,6 +71,50 @@
 
 			</div>
 			<hr>
+
+			<div class='row content'>
+				<div style='margin-left:5%' class ='col-sm-5'>
+					<div class="form-group">
+						<label for="usertype">First Preference:</label>
+						<select class="form-control" name="preference_1" id="preference_1">
+					    @foreach ($interests as $interest)
+					     @if ($preference->preference_1 == $interest)
+					    <option selected>{{$interest}}</option>
+					    @else
+                        <option>{{$interest}}</option>
+                        @endif
+                        @endforeach
+					  </select>
+					</div>
+		
+					<div class="form-group">
+						<label for="usertype">Second Preference:</label>
+						<select class="form-control" name="preference_2" id="preference_2">
+					    @foreach ($interests as $interest)
+					     @if ($preference->preference_2 == $interest)
+					    <option selected>{{$interest}}</option>
+					    @else
+                        <option>{{$interest}}</option>
+                        @endif
+                        @endforeach
+					  </select>
+					</div>
+		
+					<div class="form-group">
+						<label for="usertype">Third Preference:</label>
+						<select class="form-control" name="preference_3" id="preference_3">
+					    @foreach ($interests as $interest)
+					     @if ($preference->preference_3 == $interest)
+					    <option selected>{{$interest}}</option>
+					    @else
+                        <option>{{$interest}}</option>
+                        @endif
+                        @endforeach
+					  </select>
+					</div>
+				</div>
+			</div>
+
 			<p style='text-align: right'>
 			 	<a style='border-color:#ccc' href="{{URL::to('/my_account')}}" class="btn btn-secondary">Cancel</a>
         	  <button style='margin-left:20px; margin-right:10%' href="#" class="btn btn-primary">Apply change</button>

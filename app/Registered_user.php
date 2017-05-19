@@ -19,4 +19,8 @@ class Registered_user extends Authenticatable
     	return $this->hasMany('App\Post');
     }
 
+    public function preference()
+    {
+    	return $this->hasOne('App\user_preference', 'username');
+    }
 }

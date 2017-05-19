@@ -86,6 +86,13 @@ class RegisterController extends Controller
 
     }
 
+    public function edit_profile()
+    {
+        $interests=['meat', 'milk', 'fruit', 'vegetable', 'cheese', 'wine', 'grain'];
+        $preference=user_preference::where('username', Auth::user()->username)->first();
+        return view("layouts/edit_profile", ['interests'=>$interests], ['preference'=>$preference]);
+    }
+
     public function destroy()
     {
     $user = Auth::user();
@@ -121,6 +128,13 @@ class RegisterController extends Controller
         $user->zip = $request->zip;
         $user->phonenum = $request->phonenum;
         $user->update();
+
+        $preference = user_preference::where('username', Auth::user()->username)->first();
+        $preference->preference_1=$request['preference_1'];
+        $preference->preference_2=$request['preference_2'];
+        $preference->preference_3=$request['preference_3'];
+
+        $preference->update();
 
         return Redirect::to('my_account')->with('profile_updated', 'your profile has been updated');
 

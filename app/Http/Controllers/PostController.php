@@ -125,7 +125,7 @@ class PostController extends Controller
       
       $post->image = $filename;
       }
-      $post->save();
+      $post->update();
       return redirect::to("index");
       //->with('post_updated','Congratulations! Your post has been updated!');
     }
