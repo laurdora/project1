@@ -4,7 +4,11 @@
 		<div style='width:50%;margin:auto;' class="panel panel-default">
 		<h2 style='margin-left:5%' >Register</h2>
 		<hr>
-
+		@if (Session::has('existed'))
+	        <div style='margin-left:7%;text-align:center' class="alert alert-warning col-sm-10"> 
+	             {{Session::get('existed')}}
+	        </div>
+	        @endif
 		<form action="register_action" method="post">
 
 			<input type="hidden" name="_token" value="{{csrf_token()}}">
@@ -57,7 +61,8 @@
 
 				  <div class="form-group">
 				    <label for="company">Company name:</label>
-				    <input type="company" class="form-control" name="company" id="company" placeholder="optional">
+				    <input type="company" class="form-control" name="company" id="company" placeholder="Company name">
+				    @if($errors->has('company'))<div style='margin-top:5px' class="alert alert-danger"> <p>{{$errors->first('company')}}</p> </div>@endif
 				  </div>
 
 					<div class="form-group">
@@ -85,7 +90,7 @@
 					</div>
 
 					<div class="form-group">
-					    <label for="phonenum">phone number:</label>
+					    <label for="phonenum">phone number: (Please use '00' instead of '+')</label>
 					    <input type="phonenum" class="form-control" name="phonenum" id="phonenum" placeholder="1234567890">
 					    @if($errors->has('phonenum'))<div style='margin-top:5px' class="alert alert-danger"> <p>{{$errors->first('phonenum')}}</p> </div>@endif
 					</div>					
@@ -94,6 +99,57 @@
 
 			</div>
 			<hr>
+			<div class="form-group">
+			<h3 style='margin-left:5%'> Item preference (Optional)</h3>
+			<label style='margin-left:5%'> Selecting your content preference will change the content display based on your preference </label>
+			</div>
+
+			<div class='row content'>
+				<div style='margin-left:5%' class ='col-sm-5'>
+					<div class="form-group">
+						<label for="usertype">First Preference:</label>
+						<select class="form-control" name="preference_1" id="preference_1" >
+							<option value="" >Select option</option>
+							<option value="meat">meat</option>
+							<option value="milk">milk</option>
+							<option value="fruit">fruit</option>
+							<option value="vegetable">vegetable</option>
+							<option value="cheese">cheese</option>
+							<option value="wine">wine</option>
+							<option value="grain">grain</option>
+						</select>
+					</div>
+		
+					<div class="form-group">
+						<label for="usertype">Second Preference:</label>
+						<select class="form-control" name="preference_2" id="preference_2" >
+							<option value="" >Select option</option>
+							<option value="meat">meat</option>
+							<option value="milk">milk</option>
+							<option value="fruit">fruit</option>
+							<option value="vegetable">vegetable</option>
+							<option value="cheese">cheese</option>
+							<option value="wine">wine</option>
+							<option value="grain">grain</option>
+						</select>
+					</div>
+		
+					<div class="form-group">
+						<label for="usertype">Third Preference:</label>
+						<select class="form-control" name="preference_3" id="prefer"  >
+							<option value="" >Select option</option>
+							<option value="meat">meat</option>
+							<option value="milk">milk</option>
+							<option value="fruit">fruit</option>
+							<option value="vegetable">vegetable</option>
+							<option value="cheese">cheese</option>
+							<option value="wine">wine</option>
+							<option value="grain">grain</option>
+						</select>
+					</div>
+				</div>
+			</div>
+
 			<p style='text-align: right'>
 			 	<a style='border-color:#ccc' href="{{URL::to('/')}}" class="btn btn-secondary">Cancle</a>
         	  	<button style='margin-right:10%' type='submit' href="#" class="btn btn-primary">Submit</button>
@@ -107,5 +163,6 @@
 
 
 @include('layouts.footer')
+
 </body>
 </html>

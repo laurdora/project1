@@ -7,3 +7,5 @@
 Homestead.json
 Homestead.yaml
 .env
+public/asset/media/demo.mp3
+public/asset/media/demo.mp4
