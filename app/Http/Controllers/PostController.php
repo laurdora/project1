@@ -91,23 +91,27 @@ class PostController extends Controller
 
     public function updatesellerpost(request $request)
     {
-      //Post::where('Post_id', $request->Post_id)->update();
-      
       //Validate post information
-      $this->validate($request, [
-
+      
+      $validator = Validator::make($request->all(), [
         'itemcategory' =>'required',
         'price' =>'required|numeric',
         'Ptitle' =>'required|max:50',
         'description' =>'required',
-        'image' => 'image|mimes:jpeg,jpg,png'
-        ],
+        'image' => 'nullable|image|mimes:jpeg,jpg,png'
+      ],
 
-        [
+      [
         'price.numeric' => 'Please offer a price in numeric form',
         'Ptitle.max'=> 'Your title is too long, please write your title within 50 characters',
-        ]); //validate works
-      
+      ]);
+
+      if ($validator->fails()) {
+        $categories = ['meat','milk','fruit','vegetable','cheese','wine','grain'];
+        $posts = DB::table('posts')->where('Post_id', $request->Post_id)->get();
+        $post = $posts[0];
+        return view('layouts/edit_post', ['post'=>$post], ['categories'=>$categories])->withErrors($validator);
+      }      
 
       //store post into Post table
       $post = Post::where('Post_id',$request->Post_id)->first();
@@ -127,18 +131,25 @@ class PostController extends Controller
       }
       $post->update();
       return redirect::to("index");
-      //->with('post_updated','Congratulations! Your post has been updated!');
     }
 
     public function updatebuyerpost(request $request)
     {
       //Validate post information
-          $this->validate($request, [
-            'itemcategory' =>'required',
-            'Ptitle' =>'required|max:50',
-            'description' =>'required',
-            'Ptitle.max'=> 'Your title is too long, please write your title within 50 characters',
-        ]); //validate works
+
+      $validator = Validator::make($request->all(), [
+          'itemcategory' =>'required',
+          'Ptitle' =>'required|max:50',
+          'description' =>'required',
+          'Ptitle.max'=> 'Your title is too long, please write your title within 50 characters',
+      ]);
+
+      if ($validator->fails()) {
+          $categories = ['meat','milk','fruit','vegetable','cheese','wine','grain'];
+          $posts = DB::table('posts')->where('Post_id', $request->Post_id)->get();
+          $post = $posts[0];
+          return view('layouts/edit_post', ['post'=>$post], ['categories'=>$categories])->withErrors($validator);
+      }
     
           //store post into Post table
           $post = Post::where('Post_id',$request->Post_id)->first();

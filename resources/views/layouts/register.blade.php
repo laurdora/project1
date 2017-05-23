@@ -151,7 +151,7 @@
 			</div>
 
 			<p style='text-align: right'>
-			 	<a style='border-color:#ccc' href="{{URL::to('/')}}" class="btn btn-secondary">Cancle</a>
+			 	<a style='border-color:#ccc' href="{{URL::to('/')}}" class="btn btn-secondary">Cancel</a>
         	  	<button style='margin-right:10%' type='submit' href="#" class="btn btn-primary">Submit</button>
         	</p>
 
