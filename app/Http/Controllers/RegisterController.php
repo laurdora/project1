@@ -29,16 +29,16 @@ class RegisterController extends Controller
 
     	$this->validate($request , [
             
-            'fname' =>'required|alpha|max:20',
-            'username' =>'required|max:20',
+            'fname' =>'required|max:20|regex:/^[\pL\s]+$/u',
+            'username' =>'required|max:20|unique:registered_users,username',
             'password' =>'required|min:6|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/',
             'cpassword' =>'required|same:password',
-            'company' =>'required|alpha|max:40',
-            'email' =>'required|email',
+            'company' =>'required|regex:/^[\pL\s]+$/u|max:40',
+            'email' =>'required|email|unique:registered_users,email',
             'address' =>'required|max:50',
             'state' =>'required|alpha|max:15',
             'usertype' => 'required',
-            'country' =>'required|alpha|max:15',
+            'country' =>'required|/^[\pL\s]+$/u|max:15',
             'zip' =>'required|numeric|digits:4',
             'phonenum' =>'required|numeric|digits_between:10,13',
             ],
@@ -111,12 +111,12 @@ class RegisterController extends Controller
     {
         $this->validate($request , [
             
-            'fname' =>'required|alpha|max:20',
-            'company' =>'required|alpha|max:40',
-            'email' =>'required|email',
+            'fname' =>'required|max:20|regex:/^[\pL\s]+$/u',
+            'company' =>'required|regex:/^[\pL\s]+$/u|max:40',
+            'email' =>'required|email|unique:registered_users,email',
             'address' =>'required|max:50',
             'state' =>'required|alpha|max:15',
-            'country' =>'required|alpha|max:15',
+            'country' =>'required|/^[\pL\s]+$/u|max:15',
             'zip' =>'required|numeric|digits:4',
             'phonenum' =>'required|numeric|digits_between:10,13',
             ]);

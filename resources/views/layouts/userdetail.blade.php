@@ -18,8 +18,8 @@
                            <ul class="list-group" style="font-size: 18px">
                               <li class="list-group-item"><i class="glyphicon glyphicon-user"></i> {{$user->username}}</li>
                               <li class="list-group-item"><i class="glyphicon glyphicon-briefcase"></i> {{$user->company}}</li>
-                              <li class="list-group-item"><i class="glyphicon glyphicon-earphone"></i> {{$user->phonenum}}</li>
-                              <li class="list-group-item"><i class="glyphicon glyphicon-envelope"></i> {{$user->email}}</li>
+                              <li class="list-group-item"><i class="glyphicon glyphicon-shopping-cart"></i> {{$user->usertype}}</li>
+                              <li class="list-group-item"><i class="glyphicon glyphicon-globe"></i> {{$user->country}}</li>
                            </ul>
                         </div>
                   </div>
