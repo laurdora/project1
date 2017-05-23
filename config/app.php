@@ -167,7 +167,7 @@ return [
          * Package Service Providers...
          */
         Laravel\Tinker\TinkerServiceProvider::class,
-        TeamTNT\TNTSearch\TNTSearchServiceProvider::class,
+        //TeamTNT\TNTSearch\TNTSearchServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -226,7 +226,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Input' => Illuminate\Support\Facades\Input::class,
-        'TNTSearch' => TeamTNT\TNTSearch\Facades\TNTSearch::class,
+        //'TNTSearch' => TeamTNT\TNTSearch\Facades\TNTSearch::class,
     ],
 
 ];
