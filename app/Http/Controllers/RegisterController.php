@@ -38,7 +38,7 @@ class RegisterController extends Controller
             'address' =>'required|max:50',
             'state' =>'required|alpha|max:15',
             'usertype' => 'required',
-            'country' =>'required|/^[\pL\s]+$/u|max:15',
+            'country' =>'required|regex:/^[\pL\s]+$/u|max:15',
             'zip' =>'required|numeric|digits:4',
             'phonenum' =>'required|numeric|digits_between:10,13',
             ],
@@ -113,10 +113,10 @@ class RegisterController extends Controller
             
             'fname' =>'required|max:20|regex:/^[\pL\s]+$/u',
             'company' =>'required|regex:/^[\pL\s]+$/u|max:40',
-            'email' =>'required|email|unique:registered_users,email',
+            'email' =>'required|email',
             'address' =>'required|max:50',
             'state' =>'required|alpha|max:15',
-            'country' =>'required|/^[\pL\s]+$/u|max:15',
+            'country' =>'required|regex:/^[\pL\s]+$/u|max:15',
             'zip' =>'required|numeric|digits:4',
             'phonenum' =>'required|numeric|digits_between:10,13',
             ]);
